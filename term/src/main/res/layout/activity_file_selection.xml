@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
- * Copyright (c) 2017-2022 Roumen Petrov.  All rights reserved.
+ * Copyright (c) 2017-2024 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="@bool/fits_system_windows"
     android:orientation="vertical"
     tools:context="com.termoneplus.shortcuts.FileSelection">
 
