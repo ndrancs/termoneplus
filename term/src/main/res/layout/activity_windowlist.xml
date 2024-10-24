@@ -22,6 +22,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="@bool/fits_system_windows"
+    app:statusBarBackground="?colorPrimaryDark"
     tools:context="com.termoneplus.WindowListActivity">
 
     <include layout="@layout/appbar"/>
