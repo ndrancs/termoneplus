@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright (C) 2007 The Android Open Source Project
-     Copyright (c) 2017-2019 Roumen Petrov.  All rights reserved.
+     Copyright (c) 2017-2024 Roumen Petrov.  All rights reserved.
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -15,7 +15,8 @@
      limitations under the License.
 -->
 
-<resources>
+<resources
+    xmlns:tools="http://schemas.android.com/tools">
 
     <!-- "TermOne Plus" "Dark" theme(default) -->
     <style name="BaseAppTheme" parent="Theme.AppCompat">
@@ -40,6 +41,7 @@
         <item name="colorAccent">#AED581</item><!--Light Green 50, 300-->
         <item name="colorPrimaryLight">#B0BEC5</item><!--Blue Gray 50, 200-->
         <item name="themeTextColor">?android:attr/textColorPrimary</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
     </style>
 
     <!-- "TermOne Plus" "DayNight" theme(system) -->
