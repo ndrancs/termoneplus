@@ -95,7 +95,7 @@
             android:dialogTitle="@string/dialog_title_orientation_preference"
             android:entries="@array/entries_orientation_preference"
             android:entryValues="@array/entryvalues_orientation_preference"
-            android:key="orientation"
+            android:key="@string/key_orientation_preference"
             android:summary="@string/summary_orientation_preference"
             android:title="@string/title_orientation_preference"/>
 

@@ -21,12 +21,13 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.text.TextUtils;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.preference.PreferenceManager;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 import jackpal.androidterm.emulatorview.ColorScheme;
 
 
@@ -50,6 +51,8 @@ public class Settings {
 
     @FontSource
     private int font_source;
+    @Orientation
+    private int orientation;
     private String initial_command;
     private boolean source_sys_shrc;
 
@@ -63,6 +66,9 @@ public class Settings {
         font_source = parseInteger(preferences,
                 context.getString(R.string.key_fontsource_preference),
                 FontSource.SYSTEM);
+        orientation = parseInteger(preferences,
+                context.getString(R.string.key_orientation_preference),
+                r.getInteger(R.integer.pref_orientation_default));
         initial_command = parseString(preferences,
                 context.getString(R.string.key_initialcommand_preference),
                 r.getString(R.string.pref_initialcommand_default));
@@ -85,6 +91,7 @@ public class Settings {
         if (TextUtils.isEmpty(key)) return;
 
         if (parseFontSource(context, preferences, key)) return;
+        if (parseOrientation(context, preferences, key)) return;
         if (parseInitialCommand(context, preferences, key)) return;
         parseSourceSysRC(context, preferences, key);
     }
@@ -92,6 +99,11 @@ public class Settings {
     @FontSource
     public int getFontSource() {
         return font_source;
+    }
+
+    @Orientation
+    public int getOrientation() {
+        return orientation;
     }
 
     public boolean sourceSystemShellStartupFile() {
@@ -135,6 +147,25 @@ public class Settings {
         return true;
     }
 
+    private boolean parseOrientation(Context context, SharedPreferences preferences, String key) {
+        String pref = context.getString(R.string.key_orientation_preference);
+        if (!key.equals(pref)) return false;
+
+        int value = parseInteger(preferences, key, orientation);
+        switch (value) {
+            case Orientation.AUTOMATIC:
+            case Orientation.LANDSCAPE:
+            case Orientation.PORTRAIT:
+            case Orientation.SYSTEM:
+                orientation = value;
+                break;
+            default:
+                Resources r = context.getResources();
+                orientation = r.getInteger(R.integer.pref_orientation_default);
+        }
+        return true;
+    }
+
     private boolean parseInitialCommand(Context context, SharedPreferences preferences, String key) {
         String pref = context.getString(R.string.key_initialcommand_preference);
         if (!key.equals(pref)) return false;
@@ -162,5 +193,20 @@ public class Settings {
     public @interface FontSource {
         int SYSTEM = 1; // default
         int EMBED = 2;
+    }
+
+    @IntDef({
+            Orientation.AUTOMATIC,
+            Orientation.LANDSCAPE,
+            Orientation.PORTRAIT,
+            Orientation.SYSTEM
+    })
+    @Retention(RetentionPolicy.SOURCE)
+    // items match resource @array/entryvalues_orientation_preference
+    public @interface Orientation {
+        int AUTOMATIC = 0; // match resource @integer/pref_orientation_default
+        int LANDSCAPE = 1;
+        int PORTRAIT = 2;
+        int SYSTEM = 3; // TODO: reserved for future use
     }
 }
