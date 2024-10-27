@@ -31,6 +31,7 @@
         <item>자동</item>
         <item>가로</item>
         <item>세로</item>
+        <item>System</item>
     </string-array>
 
     <string-array name="entries_cursorblink_preference">

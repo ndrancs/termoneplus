@@ -30,6 +30,7 @@
         <item>Automatisch</item>
         <item>Liggend</item>
         <item>Staand</item>
+        <item>System</item>
     </string-array>
 
     <string-array name="entries_cursorblink_preference">

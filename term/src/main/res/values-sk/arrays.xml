@@ -30,6 +30,7 @@
         <item>Automatická</item>
         <item>Na šírku</item>
         <item>Na výšku</item>
+        <item>System</item>
     </string-array>
 
     <string-array name="entries_cursorblink_preference">

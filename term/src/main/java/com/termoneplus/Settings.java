@@ -207,6 +207,6 @@ public class Settings {
         int AUTOMATIC = 0; // match resource @integer/pref_orientation_default
         int LANDSCAPE = 1;
         int PORTRAIT = 2;
-        int SYSTEM = 3; // TODO: reserved for future use
+        int SYSTEM = 3;
     }
 }

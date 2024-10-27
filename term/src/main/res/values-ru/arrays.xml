@@ -15,6 +15,7 @@
         <item>Автоматически</item>
         <item>Альбомная</item>
         <item>Портретная</item>
+        <item>System</item>
     </string-array>
 
     <string-array name="entries_cursorblink_preference">

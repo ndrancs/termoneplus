@@ -55,6 +55,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <item>Automatic</item>
         <item>Landscape</item>
         <item>Portrait</item>
+        <item>System</item>
     </string-array>
 
     <string-array name="entries_sizecalc_preference">

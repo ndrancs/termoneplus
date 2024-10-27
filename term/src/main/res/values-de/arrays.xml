@@ -70,6 +70,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <item>Automatisch</item>
         <item>Querformat</item>
         <item>Hochformat</item>
+        <item>System</item>
     </string-array>
 
     <string-array name="entries_sizecalc_preference">

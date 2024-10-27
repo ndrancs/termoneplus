@@ -31,6 +31,7 @@
         <item>Automática</item>
         <item>Horizontal</item>
         <item>Vertical</item>
+        <item>System</item>
     </string-array>
 
     <string-array name="entries_cursorblink_preference">

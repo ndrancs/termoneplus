@@ -28,6 +28,7 @@
         <item>אוטומטי</item>
         <item>שוכב</item>
         <item>עומד</item>
+        <item>System</item>
     </string-array>
     <string-array name="entries_cursorblink_preference">
         <item>סמן לא מהבהב</item>

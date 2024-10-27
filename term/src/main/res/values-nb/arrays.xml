@@ -31,6 +31,7 @@
         <item>Automatisk</item>
         <item>Landskap</item>
         <item>Portrett</item>
+        <item>System</item>
     </string-array>
 
     <string-array name="entries_cursorblink_preference">

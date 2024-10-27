@@ -31,6 +31,7 @@
         <item>Automatikus</item>
         <item>Fekvő</item>
         <item>Álló</item>
+        <item>System</item>
     </string-array>
 
     <string-array name="entries_cursorblink_preference">

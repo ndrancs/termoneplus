@@ -37,6 +37,7 @@
         <item>Automatyczna</item>
         <item>Pozioma</item>
         <item>Pionowa</item>
+        <item>Systemowy</item>
     </string-array>
 
     <string-array name="entries_sizecalc_preference">
