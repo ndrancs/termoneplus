@@ -36,6 +36,7 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.Semaphore;
 
 
 /**
@@ -261,7 +262,24 @@ public class CommandCollector {
             return null;
         }
 
-        private ICommand getRemote(@SuppressWarnings("unused") Context context) {
+        private ICommand getRemote(Context context) {
+            ICommand remote = TrustedApplications.getRemote(app);
+            if (remote != null) return remote;
+
+            final Semaphore semaphore = new Semaphore(0);
+
+            new Handler(Looper.getMainLooper()).post(() -> {
+                boolean flag = TrustedApplications.bind(context, app, semaphore::release);
+                if (!flag)
+                    semaphore.release();
+            });
+
+            try {
+                semaphore.acquire();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
             return TrustedApplications.getRemote(app);
         }
     }
