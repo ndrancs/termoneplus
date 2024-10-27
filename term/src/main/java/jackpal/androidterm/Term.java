@@ -23,7 +23,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.net.Uri;
@@ -427,20 +426,6 @@ public class Term extends AppCompatActivity
                 }
             }
         }
-
-        @TermSettings.Orientation
-        int orientation = mSettings.getScreenOrientation();
-        int o = 0;
-        if (orientation == TermSettings.ORIENTATION_UNSPECIFIED) {
-            o = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
-        } else if (orientation == TermSettings.ORIENTATION_LANDSCAPE) {
-            o = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
-        } else if (orientation == TermSettings.ORIENTATION_PORTRAIT) {
-            o = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
-        } else {
-            /* Shouldn't be happened. */
-        }
-        setRequestedOrientation(o);
     }
 
     @Override

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018-2023 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2018-2024 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,18 +20,20 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.Nullable;
+
 import com.termoneplus.utils.ScriptImporter;
 import com.termoneplus.utils.ThemeManager;
 import com.termoneplus.widget.ScreenMessage;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.Nullable;
 import jackpal.androidterm.emulatorview.TermSession;
 
 
@@ -140,5 +142,25 @@ public class TermActivity extends jackpal.androidterm.Term {
             }
         }
         super.updatePrefs();
+
+        setScreenOrientation();
+    }
+
+    private void setScreenOrientation() {
+        int o;
+        switch (Application.settings.getOrientation()) {
+            case Settings.Orientation.LANDSCAPE:
+                o = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
+                break;
+            case Settings.Orientation.PORTRAIT:
+                o = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+                break;
+            case Settings.Orientation.SYSTEM:
+                o = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
+                break;
+            default:
+                o = ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR;
+        }
+        setRequestedOrientation(o);
     }
 }

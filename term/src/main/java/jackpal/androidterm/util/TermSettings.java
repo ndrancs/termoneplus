@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2007 The Android Open Source Project
- * Copyright (C) 2018-2021 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2018-2024 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,8 +41,6 @@ public class TermSettings {
 
     private int mStatusBar;
     private int mActionBarMode;
-    @Orientation
-    private int mOrientation;
     private int mSizeCalc;
     private int mCursorStyle;
     private int mCursorBlink;
@@ -68,13 +66,6 @@ public class TermSettings {
     public static final int ACTION_BAR_MODE_ALWAYS_VISIBLE = 1;
     public static final int ACTION_BAR_MODE_HIDES = 2;
     private static final int ACTION_BAR_MODE_MAX = 2;
-
-    @Retention(RetentionPolicy.SOURCE)
-    @IntDef({ORIENTATION_UNSPECIFIED, ORIENTATION_LANDSCAPE, ORIENTATION_PORTRAIT})
-    public @interface Orientation {}
-    public static final int ORIENTATION_UNSPECIFIED = 0;
-    public static final int ORIENTATION_LANDSCAPE = 1;
-    public static final int ORIENTATION_PORTRAIT = 2;
 
     /** An integer not in the range of real key codes. */
     public static final int KEYCODE_NONE = -1;
@@ -118,7 +109,6 @@ public class TermSettings {
     private void readDefaultPrefs(Resources res) {
         mStatusBar = Integer.parseInt(res.getString(R.string.pref_statusbar_default));
         mActionBarMode = res.getInteger(R.integer.pref_actionbar_default);
-        mOrientation = res.getInteger(R.integer.pref_orientation_default);
         mSizeCalc = res.getInteger(R.integer.pref_sizecalc_default);
         mCursorStyle = Integer.parseInt(res.getString(R.string.pref_cursorstyle_default));
         mCursorBlink = Integer.parseInt(res.getString(R.string.pref_cursorblink_default));
@@ -143,7 +133,6 @@ public class TermSettings {
         mPrefs = prefs;
         mStatusBar = readIntPref("statusbar", mStatusBar, 1);
         mActionBarMode = readIntPref("actionbar", mActionBarMode, ACTION_BAR_MODE_MAX);
-        mOrientation = readIntPref("orientation", mOrientation, 2);
         mSizeCalc = readIntPref("sizecalc", mSizeCalc, 1);
         // mCursorStyle = readIntPref(CURSORSTYLE_KEY, mCursorStyle, 2);
         // mCursorBlink = readIntPref(CURSORBLINK_KEY, mCursorBlink, 1);
@@ -193,11 +182,6 @@ public class TermSettings {
 
     public int actionBarMode() {
         return mActionBarMode;
-    }
-
-    @Orientation
-    public int getScreenOrientation() {
-        return mOrientation;
     }
 
     public int getScreenCalcMethod() {
