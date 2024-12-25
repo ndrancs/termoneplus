@@ -17,6 +17,11 @@ pluginManagement {
     }
 }
 
+plugins {
+    // gradle -q javaToolchains
+    id('org.gradle.toolchains.foojay-resolver-convention') version '0.9.0'
+}
+
 dependencyResolutionManagement {
     //TODO Gradle 8.3 :
     // "Build was configured to prefer settings repositories over project repositories but repository ... was added by initialization script '.../init.gradle'"

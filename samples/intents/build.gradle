@@ -1,6 +1,12 @@
 plugins {
     id 'com.android.application'
 }
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+        vendor = JvmVendorSpec.JETBRAINS
+    }
+}
 
 // "TermOne Plus" applicationId
 def termApplicationId = "com.termoneplus"
