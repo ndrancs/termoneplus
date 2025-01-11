@@ -37,8 +37,6 @@
     <string name="enable_wifilock">Weź WifiLock</string>
     <string name="disable_wifilock">Zwolnij WifiLock</string>
 
-    <string name="path_collection_progress">collecting paths from other applications …</string>
-
     <!-- Navigation drawer -->
     <string name="navigation_drawer_open">Otwórz panel nawigacji</string>
     <string name="navigation_drawer_close">Zamknij panel nawigacji</string>

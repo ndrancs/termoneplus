@@ -69,7 +69,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <string name="enable_wifilock">WLAN nie abschalten</string>
     <string name="disable_wifilock">WLAN-Abschaltung erlauben</string>
 
-    <string name="path_collection_progress">Anwendungspfade werden abgefragt …</string>
     <string name="app_collection_progress">Informationen anderer Apps werden abgefragt …</string>
 
     <!-- Navigation drawer -->
