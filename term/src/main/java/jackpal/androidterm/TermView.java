@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2012 Steven Luo
- * Copyright (C) 2022 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2022-2025 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,6 @@
 package jackpal.androidterm;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.util.DisplayMetrics;
 
 import com.termoneplus.TypefaceSetting;
