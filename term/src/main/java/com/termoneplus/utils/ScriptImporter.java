@@ -40,13 +40,11 @@ public class ScriptImporter {
 
                 Stream.copy(inraw, session.getTermOut());
             } catch (IOException ignore) {
-                activity.runOnUiThread(() -> {
-                    showError(activity, R.string.script_import_error);
-                });
+                activity.runOnUiThread(() ->
+                        showError(activity, R.string.script_import_error));
             } catch (SecurityException ignore) {
-                activity.runOnUiThread(() -> {
-                    showError(activity, R.string.script_access_error);
-                });
+                activity.runOnUiThread(() ->
+                        showError(activity, R.string.script_access_error));
             }
         }).start();
     }
