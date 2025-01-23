@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2018-2025 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,8 +32,14 @@ public class SimpleClipboardManager {
     }
 
     public CharSequence getText() {
-        ClipData.Item item = clip.getPrimaryClip().getItemAt(0);
-        return item.getText();
+        try {
+            ClipData data = clip.getPrimaryClip();
+            if (data == null) return "";
+            ClipData.Item item = data.getItemAt(0);
+            return item.getText();
+        } catch (RuntimeException ignore) {
+        }
+        return "";
     }
 
     public void setText(CharSequence text) {
@@ -42,7 +48,9 @@ public class SimpleClipboardManager {
     }
 
     public boolean hasText() {
-        return (clip.hasPrimaryClip() &&
-                clip.getPrimaryClipDescription().hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN));
+        if (!clip.hasPrimaryClip()) return false;
+        ClipDescription descr = clip.getPrimaryClipDescription();
+        if (descr == null) return false;
+        return descr.hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN);
     }
 }
