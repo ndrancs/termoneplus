@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2007 The Android Open Source Project
- * Copyright (C) 2018-2024 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2018-2025 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,6 @@
 
 package jackpal.androidterm;
 
-import android.app.ActivityOptions;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -175,18 +174,16 @@ public class TermService extends SessionsService {
         @RequiresApi(16)
         private static class Compat16 {
             private static PendingIntent get(Context context, int requestCode, Intent intent, int flags) {
-                Bundle bundle = null;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE /*API level 34*/) {
-                    ActivityOptions options = ActivityOptions.makeBasic();
-                    options.setPendingIntentBackgroundActivityStartMode(ActivityOptions.MODE_BACKGROUND_ACTIVITY_START_ALLOWED);
-                    bundle = options.toBundle();
-                // Note not required on Android 13.
-                //} else if (Build.VERSION.SDK_INT == Build.VERSION_CODES.TIRAMISU /*API level 33*/) {
+                // Note java.lang.IllegalArgumentException on Android 15 /*API level 35*/ if target is 35:
+                // Note not required on Android 14 /*API level 34*/:
+                //    ActivityOptions options = ActivityOptions.makeBasic();
+                //    options.setPendingIntentBackgroundActivityStartMode(ActivityOptions.MODE_BACKGROUND_ACTIVITY_START_ALLOWED);
+                //    bundle = options.toBundle();
+                // Note not required on Android 13 /*API level 33*/:
                 //    ActivityOptions options = ActivityOptions.makeBasic();
                 //    options.setPendingIntentBackgroundActivityLaunchAllowed(true);
                 //    bundle = options.toBundle();
-                }
-                return PendingIntent.getActivity(context, requestCode, intent, flags, bundle);
+                return PendingIntent.getActivity(context, requestCode, intent, flags, null);
             }
         }
 
