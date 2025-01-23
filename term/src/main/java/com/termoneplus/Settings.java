@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018-2024 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2018-2025 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,18 +62,21 @@ public class Settings {
     }
 
     public Settings(Context context, SharedPreferences preferences) {
-        Resources r = context.getResources();
+        this(context.getResources(), preferences);
+    }
+
+    public Settings(Resources r, SharedPreferences preferences) {
         font_source = parseInteger(preferences,
-                context.getString(R.string.key_fontsource_preference),
+                r.getString(R.string.key_fontsource_preference),
                 FontSource.SYSTEM);
         orientation = parseInteger(preferences,
-                context.getString(R.string.key_orientation_preference),
+                r.getString(R.string.key_orientation_preference),
                 r.getInteger(R.integer.pref_orientation_default));
         initial_command = parseString(preferences,
-                context.getString(R.string.key_initialcommand_preference),
+                r.getString(R.string.key_initialcommand_preference),
                 r.getString(R.string.pref_initialcommand_default));
         source_sys_shrc = parseBoolean(preferences,
-                context.getString(R.string.key_source_sys_shrc_preference),
+                r.getString(R.string.key_source_sys_shrc_preference),
                 r.getBoolean(R.bool.pref_source_sys_shrc_default));
     }
 
