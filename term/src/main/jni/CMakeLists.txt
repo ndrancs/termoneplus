@@ -101,26 +101,3 @@ target_compile_definitions(
 target_link_libraries(
         appinfo
 )
-
-# used if ABI < 16
-add_executable(
-        libexeo-t1plus.so
-        appcmd.c
-        socket.c
-        atomicio.c
-)
-target_compile_definitions(
-        libexeo-t1plus.so
-        PRIVATE
-        PACKAGE_NAME="${APPLICATION_ID}"
-)
-target_compile_options(
-        libexeo-t1plus.so
-        PRIVATE
-        # build without fortify, compatibility with SDK < 17!
-        -U_FORTIFY_SOURCE
-)
-target_link_libraries(
-        libexeo-t1plus.so
-        -nopie
-)
