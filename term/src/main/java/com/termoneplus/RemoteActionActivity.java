@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2024 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2019-2025 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,20 +22,19 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.termoneplus.remote.CommandCollector;
 import com.termoneplus.services.ServiceManager;
 import com.termoneplus.utils.ThemeManager;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import jackpal.androidterm.TermService;
-import jackpal.androidterm.compat.PathCollector;
 
 
 public class RemoteActionActivity extends AppCompatActivity {
     private final ServiceManager service_manager = new ServiceManager();
 
-    private boolean path_collected = false;
     private TermService term_service = null;
     private boolean command_collected = false;
 
@@ -76,11 +75,6 @@ public class RemoteActionActivity extends AppCompatActivity {
             TextView msg = findViewById(R.id.progress_message);
             msg.setText(R.string.app_collection_progress);
         }
-
-        PathCollector.collect(this, () -> {
-            path_collected = true;
-            processIntent();
-        });
 
         CommandCollector.collect(this, () -> {
             command_collected = true;
@@ -126,7 +120,6 @@ public class RemoteActionActivity extends AppCompatActivity {
     private void processIntent() {
         /* process intent after path collection and start of service */
         if (term_service == null) return;
-        if (!path_collected) return;
         if (!command_collected) return;
 
         /* intent is required - see onCreate() */

@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2007 The Android Open Source Project
- * Copyright (C) 2017-2024 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2017-2025 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,6 +46,13 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.preference.PreferenceManager;
+
 import com.google.android.material.snackbar.Snackbar;
 import com.termoneplus.AppCompatActivity;
 import com.termoneplus.Application;
@@ -68,13 +75,6 @@ import com.termoneplus.widget.ScreenMessage;
 
 import java.io.IOException;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.preference.PreferenceManager;
-import jackpal.androidterm.compat.PathCollector;
 import jackpal.androidterm.emulatorview.EmulatorView;
 import jackpal.androidterm.emulatorview.TermSession;
 import jackpal.androidterm.emulatorview.UpdateCallback;
@@ -109,7 +109,6 @@ public class Term extends AppCompatActivity
     private boolean mAlreadyStarted = false;
     private boolean mStopServiceOnFinish = false;
     private int onResumeSelectWindow = -1;
-    private boolean path_collected;
     private boolean command_collected;
     private TermService mTermService;
     private TermActionBar mActionBar;
@@ -221,7 +220,6 @@ public class Term extends AppCompatActivity
         }
 
         mSettings.readPrefs(this, sharedPreferences);
-        PathCollector.extractPreferences(this, sharedPreferences);
     }
 
     @Override
@@ -229,7 +227,6 @@ public class Term extends AppCompatActivity
         super.onCreate(icicle);
 
         Log.v(Application.APP_TAG, "onCreate");
-        path_collected = false;
         command_collected = false;
         mHandler = new Handler(getMainLooper());
 
@@ -261,12 +258,6 @@ public class Term extends AppCompatActivity
 
         mViewFlipper = findViewById(R.id.view_flipper);
 
-        if (!path_collected) {
-            PathCollector.collect(this, () -> {
-                path_collected = true;
-                populateSessions();
-            });
-        }
         if (!command_collected) {
             CommandCollector.collect(this, () -> {
                 command_collected = true;
@@ -296,7 +287,6 @@ public class Term extends AppCompatActivity
 
     private synchronized void populateSessions() {
         if (mTermService == null) return;
-        if (!path_collected) return;
         if (!command_collected) return;
 
         if (mTermService.getSessionCount() == 0) {
@@ -647,22 +637,12 @@ public class Term extends AppCompatActivity
         switch (action) {
             case WINDOW_ACTION_NEW:
                 onResumeSelectWindow = Integer.MAX_VALUE;
-                /* TODO: Note used in remote actions "send", "run script" and "run shortcut"
-                 *  when "window handle" argument is not provided.
-                 *  Paths are collected by remote action.
-                 */
-                path_collected = true;
                 break;
             case WINDOW_ACTION_SWITCH:
                 int target = intent.getIntExtra(Application.ARGUMENT_TARGET_WINDOW, -1);
                 if (target >= 0) {
                     onResumeSelectWindow = target;
                 }
-                /* TODO: Note used in remote actions "run script" and "run shortcut"
-                 *  when "window handle" is passed as argument.
-                 *  Paths are collected by remote action.
-                 */
-                path_collected = true;
                 break;
         }
     }

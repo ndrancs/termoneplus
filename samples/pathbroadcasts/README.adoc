@@ -1,6 +1,7 @@
 = Path Broadcasts (Sample)
 
 Deprecated functionality that uses "broadcasts" to collect extra paths with shell commands.
+Supported until "TermOne Plus" 5.4.
 
 == DEPRECATION:
 . Collection of "extra" path components slow down opening of normal sessions.
