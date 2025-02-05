@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:installLocation="auto"
-    android:sharedUserId="${applicationId}">
+    android:sharedUserId="${applicationId}"
+    android:sharedUserMaxSdkVersion="32">
 
     <uses-feature
         android:name="android.hardware.touchscreen"
@@ -38,20 +39,6 @@
         android:label="@string/perm_run_script"
         android:permissionGroup="${applicationId}.permission-group.TERMINAL"
         android:protectionLevel="dangerous"/>
-    <!-- deprecated: pending removal -->
-    <permission
-        android:name="${applicationId}.permission.APPEND_TO_PATH"
-        android:description="@string/permdesc_append_to_path"
-        android:label="@string/perm_append_to_path"
-        android:permissionGroup="${applicationId}.permission-group.TERMINAL"
-        android:protectionLevel="signature"/>
-    <!-- deprecated: pending removal -->
-    <permission
-        android:name="${applicationId}.permission.PREPEND_TO_PATH"
-        android:description="@string/permdesc_prepend_to_path"
-        android:label="@string/perm_prepend_to_path"
-        android:permissionGroup="${applicationId}.permission-group.TERMINAL"
-        android:protectionLevel="signature"/>
 
     <permission-group
         android:name="${applicationId}.permission-group.TERMINAL"

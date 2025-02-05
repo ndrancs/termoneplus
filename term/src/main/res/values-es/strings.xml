@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
  * Copyright (C) 2008 The Android Open Source Project
+ * Copyright (C) 2025 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -139,10 +140,6 @@
 
     <string name="perm_run_script">Permitir que la aplicación ejecute comandos arbitrarios</string>
     <string name="permdesc_run_script">Permitir a las aplicaciones abrir nuevas ventanas de terminal con todos los permisos concedidos, incluso los de acceso a Internet y a la tarjeta SD.</string>
-    <string name="perm_append_to_path">Añadir comandos al Terminal</string>
-    <string name="permdesc_append_to_path">Otras aplicaciones pueden añadir nuevos comandos al PATH.</string>
-    <string name="perm_prepend_to_path">Sobreescribir comandos del Terminal</string>
-    <string name="permdesc_prepend_to_path">Otras aplicaciones pueden sobreescribir comandos ya existentes del PATH.</string>
 
     <string name="email_transcript_subject">Enviar correo electrónico sobre Terminal</string>
     <string name="email_transcript_chooser_title">Enviar correo usando:</string>

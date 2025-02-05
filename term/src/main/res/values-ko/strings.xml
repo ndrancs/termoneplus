@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
  * Copyright (C) 2008 The Android Open Source Project
+ * Copyright (C) 2025 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -139,10 +140,6 @@
 
     <string name="perm_run_script">터미널 에뮬레이터에서 명령어 실행</string>
     <string name="permdesc_run_script">어플리케이션이 터미널 에뮬레이터에서 새로운 창을 열 수 있게 허용하고, 터미널 에뮬레이터의 모든 권한을 이용하여 명령을 실행할 수 있습니다. 예를 들어, SD카드나 인터넷에 액세스할 수 있습니다.</string>
-    <string name="perm_append_to_path">터미널 에뮬레이터에서 명령어 추가</string>
-    <string name="permdesc_append_to_path">어플리케이션이 터미널 에뮬레이터에서 사용할 수 있는 명령어를 만들고, 그 명령어를 관리할 수 있게 합니다.</string>
-    <string name="perm_prepend_to_path">터미널 에뮬레이터에서 명령어 덮어쓰기</string>
-    <string name="permdesc_prepend_to_path">어플리케이션이 터미널 에뮬레이터의 명령어를 덮어씌울 수 있습니다.</string>
 
     <string name="email_transcript_subject">터미널 에뮬레이터로 이메일 보내기</string>
     <string name="email_transcript_chooser_title">이메일 보내기 :</string>

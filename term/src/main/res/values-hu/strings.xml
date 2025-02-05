@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
  * Copyright (C) 2008 The Android Open Source Project
+ * Copyright (C) 2025 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -139,10 +140,6 @@
 
     <string name="perm_run_script">Tetszőleges parancsok futtatása a Terminál Emulátorban</string>
     <string name="permdesc_run_script">Lehetővé teszi az alkalmazások számára új ablakok megnyitását az Android Terminál Emulátorban és a megnyitott ablakokban tetszőleges parancsokat futtathatnak az Android Terminál Emulátor összes jogosultságával, beleértve a teljes hozzáférést az Internethez és az SD-kártyához.</string>
-    <string name="perm_append_to_path">Parancsok hozzáadása a Terminál Emulátorhoz</string>
-    <string name="permdesc_append_to_path">Az alkalmazások felvehetnek új parancsokat (hozzáfűzhetnek a PATH változóhoz) az Android Terminál Emulátorban.</string>
-    <string name="perm_prepend_to_path">Parancsok felülírása a Terminál Emulátorban</string>
-    <string name="permdesc_prepend_to_path">Az alkalmazások felülírhatják a meglévő parancsokat (hozzáfűzhetnek a PATH változó elejéhez) az Android Terminál Emulátorban.</string>
 
     <string name="email_transcript_subject">Android Terminal Emulátor terminál másolat</string>
     <string name="email_transcript_chooser_title">Terminál küldése:</string>

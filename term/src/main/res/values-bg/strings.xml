@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (c) 2017-2025, Roumen Petrov <rpetrov@termoneplus.com>
-All rights reserved.
+Copyright (c) 2017-2025 Roumen Petrov. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -205,10 +204,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     <string name="perm_run_script">Изпълнение на произволна команда в терминалната програма</string>
     <string name="permdesc_run_script">Разрешаване на приложението на отворя нови прозорци в терминалната програма за Android и в тази прозорци, да изпълнява команди с всички права позволени на терминалната програма за Android, включващи достъп до мрежата и вашата карта памет (SD)</string>
-    <string name="perm_append_to_path">Добавяне на команди към терминалната програма</string>
-    <string name="permdesc_append_to_path">Разрешава на приложението да предостави допълнителни команди, т.е. да добави пътища към PATH на терминалната програма за Android</string>
-    <string name="perm_prepend_to_path">Припокриване на команди в терминалната програма</string>
-    <string name="permdesc_prepend_to_path">Разрешава на приложението да припокрие съществуващите команди със собствени, т.е. да вмъкне пътища към PATH на терминалната програма за Android</string>
 
     <string name="email_transcript_subject">Запис от терминалната програма</string>
     <string name="email_transcript_chooser_title">Изпращане на записа използвайки:</string>

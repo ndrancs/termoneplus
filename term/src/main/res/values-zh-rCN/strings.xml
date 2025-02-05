@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
  * Copyright (C) 2008 The Android Open Source Project
+ * Copyright (C) 2025 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -135,10 +136,6 @@
 
     <string name="perm_run_script">在终端模拟器中运行命令</string>
     <string name="permdesc_run_script">允许程序开启新窗口并运行包括与网络、存储卡相关命令在内的所有命令</string>
-    <string name="perm_append_to_path">添加命令到终端模拟器</string>
-    <string name="permdesc_append_to_path">允许程序添加额外命令</string>
-    <string name="perm_prepend_to_path">覆盖终端模拟器中已有命令</string>
-    <string name="permdesc_prepend_to_path">允许程序覆盖终端模拟器中已有命令</string>
 
     <string name="email_transcript_subject">终端模拟器副本</string>
     <string name="email_transcript_chooser_title">发送副本的邮件实例：</string>

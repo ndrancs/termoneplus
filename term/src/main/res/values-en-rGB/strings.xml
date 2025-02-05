@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (c) 2018, Andi Chandler
-All rights reserved.
+Copyright (c) 2018 Andi Chandler.  All rights reserved.
+Copyright (C) 2025 Roumen Petrov.  All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -156,10 +156,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     <string name="perm_run_script">Run arbitrary commands in Terminal Emulator</string>
     <string name="permdesc_run_script">Allows application to open new windows in Terminal Emulator for Android and run commands in those windows with all of Terminal Emulator for Android\'s permissions, including access to the Internet and your SD Card.</string>
-    <string name="perm_append_to_path">Add commands to Terminal Emulator</string>
-    <string name="permdesc_append_to_path">Allows application to provide additional commands (add directories to the PATH) for Terminal Emulator for Android.</string>
-    <string name="perm_prepend_to_path">Override commands in Terminal Emulator</string>
-    <string name="permdesc_prepend_to_path">Allows application to override existing commands with its own versions (prepend directories to the PATH) in Terminal Emulator for Android.</string>
 
     <string name="email_transcript_subject">Transcript from Terminal Emulator for Android</string>
     <string name="email_transcript_chooser_title">Mail transcript using:</string>

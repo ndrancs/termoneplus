@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
  * Copyright (C) 2008 The Android Open Source Project
+ * Copyright (C) 2025 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -139,10 +140,6 @@
 
     <string name="perm_run_script">Покретање произвољних наредби у Емулатору Терминала</string>
     <string name="permdesc_run_script">Омогућава апликацији да отвара нове прозоре у Емулатору Терминала за Андроид и покреће наредбе у тим прозорима са свим дозволама Емулатора Терминала, укључујући приступ интернету и вашој СД картици.</string>
-    <string name="perm_append_to_path">Додавање наредби у Емулатор Терминала</string>
-    <string name="permdesc_append_to_path">Дозвољава апликацији да пружи додатне наредбе (додавање директоријума у PATH) за Емулатор Терминала за Андроид.</string>
-    <string name="perm_prepend_to_path">Премошћавање наредби у Емулатору Терминала</string>
-    <string name="permdesc_prepend_to_path">Дозвољава апликацији да премости постојеће наредбе својим (префиксује директоријуме у PATH) у Емулатору Терминала за Андроид.</string>
 
     <string name="email_transcript_subject">Препис са Емулатора Терминала за Андроид</string>
     <string name="email_transcript_chooser_title">Пошаљи препис користећи:</string>

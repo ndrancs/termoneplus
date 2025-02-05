@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
  * Copyright (C) 2008 The Android Open Source Project
+ * Copyright (C) 2025 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -139,10 +140,6 @@
 
     <string name="perm_run_script">Esegui comandi arbitrari nell\'Emulatore terminale</string>
     <string name="permdesc_run_script">Permette all\'applicazione di aprire nuove finestre nell\'Emulatore terminale ed eseguire comandi in quelle finestre con tutti i permessi dell\'Emulatore, incluso l\'accesso ad internet e alla tua SD Card.</string>
-    <string name="perm_append_to_path">Aggiungi comandi all\'Emulatore terminale</string>
-    <string name="permdesc_append_to_path">Permette all\'applicazione di fornire comandi aggiuntivi (aggiungi cartelle a PATH) per l\'Emulatore terminale.</string>
-    <string name="perm_prepend_to_path">Sovrascrivi comandi nell\'Emulatore terminale</string>
-    <string name="permdesc_prepend_to_path">Permette all\'applicazione di sovrascrivere comandi esistenti con le proprie versioni (anteponi cartelle a PATH) nell\'Emulatore terminale.</string>
 
     <string name="email_transcript_subject">Trascrivi dall\'Emulatore terminale</string>
     <string name="email_transcript_chooser_title">Trascrizione email usando:</string>

@@ -120,10 +120,6 @@
 
     <string name="perm_run_script">Выполнение произвольных команд в терминале</string>
     <string name="permdesc_run_script">Позволяет приложению открытие новых окон в терминале Android и запуск команд в этих окнах со всеми разрешениями терминала, в том числе доступ к Интернету и SD-карте.</string>
-    <string name="perm_append_to_path">Добавление команд в терминала</string>
-    <string name="permdesc_append_to_path">Приложение сможет обеспечить дополнительные команды (добавить каталоги в PATH) для терминала.</string>
-    <string name="perm_prepend_to_path">Переопределение команд в терминале</string>
-    <string name="permdesc_prepend_to_path">Позволяет приложению переопределить существующие команды своими (перезаписывать PATH) в терминале.</string>
 
     <string name="email_transcript_subject">Вывод терминала Android</string>
     <string name="email_transcript_chooser_title">Отправить текст из терминала с помощью:</string>

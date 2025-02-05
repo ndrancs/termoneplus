@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
  * Copyright (C) 2008 The Android Open Source Project
+ * Copyright (C) 2025 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -139,10 +140,6 @@
 
     <string name="perm_run_script">Kjøre forskjellige kommandoer i Terminalemulatoren</string>
     <string name="permdesc_run_script">Lar appen åpne nye vinduer i Terminalemulatoren, samt kjøre kommandoer i disse. Appen vil da kunne kjøre kommandoer med alle tillatelsene som Terminalemulatoren har, inkludert tilgang til Internett og SD-kortet.</string>
-    <string name="perm_append_to_path">Legge til kommandoer i Terminalemulatoren</string>
-    <string name="permdesc_append_to_path">Lar appen tilby flere kommandoer (Legge til i PATH) til Terminalemulatoren.</string>
-    <string name="perm_prepend_to_path">Overstyr kommandoer i Terminalemulatoren</string>
-    <string name="permdesc_prepend_to_path">Lar appen overstyre eksisterende kommandoer med sine egene versjoner (legge til i begynnelsen av PATH) i Terminalemulatoren</string>
 
     <string name="email_transcript_subject">Transcript fra Android Terminalemulator</string>
     <string name="email_transcript_chooser_title">Mail transcript med:</string>

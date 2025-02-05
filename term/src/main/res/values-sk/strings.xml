@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
  * Copyright (C) 2008 The Android Open Source Project
+ * Copyright (C) 2025 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -135,10 +136,6 @@
 
     <string name="perm_run_script">Spustiť ľubovoľné príkazy</string>
     <string name="permdesc_run_script">Umožniť aplikáciám otvoriť nové okno v Emulátori terminálu pre Android a spustiť príkazy v tomto okne so všetkými povoleniami terminálu a to vrátane prístupu na Internet a ku karte SD.</string>
-    <string name="perm_append_to_path">Pridať príkazy do Emulátora terminálu Android</string>
-    <string name="permdesc_append_to_path">Umožňuje aplikáciám poskytnúť ďalšie príkazy (pridať priečinky do PATH) v Emulátori terminálu pre Android.</string>
-    <string name="perm_prepend_to_path">Prepísať príkazy v Emulátori terminálu Android</string>
-    <string name="permdesc_prepend_to_path">Umožňuje aplikáciám prepísať existujúce príkazy so svojimi vlastnými verziami (podradiť priečinky v PATH) v Emulátori terminálu pre Android.</string>
 
     <string name="email_transcript_subject">Prepis z Emulátora terminálu pre Android</string>
     <string name="email_transcript_chooser_title">Poslať prepis prostredníctvom</string>

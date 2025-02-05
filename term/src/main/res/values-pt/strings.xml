@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
  * Copyright (C) 2008 The Android Open Source Project
+ * Copyright (C) 2025 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -132,8 +133,4 @@
 
     <string name="perm_run_script">Executar comandos aleatórios no emulador de terminal</string>
     <string name="permdesc_run_script">Permite que a aplicação abra janelas no emulador de terminal e executar comandos nessas janelas com todas as permissões, incluido o acesso à Internet e aos cartão SD.</string>
-    <string name="perm_append_to_path">Adicionar comandos ao emulador de terminal</string>
-    <string name="permdesc_append_to_path">Permite a disponibilização de comandos adicionais (adicionar diretórios em PATH) no emulador de terminal Android.</string>
-    <string name="perm_prepend_to_path">Substituir comandos do emulador de terminal</string>
-    <string name="permdesc_prepend_to_path">Permite que a aplicação substitua os comandos existentes pelos seus (anteceder diretórios em PATH) no emulador de terminal Android.</string>
 </resources>

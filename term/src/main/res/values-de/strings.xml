@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
  * Copyright (C) 2008 The Android Open Source Project
+ * Copyright (C) 2025 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -222,10 +223,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     <string name="perm_run_script">Beliebige Skripte im Terminalemulator ausführen</string>
     <string name="permdesc_run_script">Erlaubt der App, neue Fenster im Terminalemulator für Android zu öffnen und in diesen Fenstern Befehle mit allen Berechtigungen des Terminalemulators für Android auszuführen, einschließlich des Zugriffs auf das Internet und Ihre SD-Karte.</string>
-    <string name="perm_append_to_path">Befehle zum Terminalemulator hinzufügen</string>
-    <string name="permdesc_append_to_path">Erlaubt der App, dem Terminalemulator für Android zusätzliche Befehle (d. h. dem $PATH Verzeichnisse) hinzufügen.</string>
-    <string name="perm_prepend_to_path">Befehle im Terminalemulator Überschreiben</string>
-    <string name="permdesc_prepend_to_path">Erlaubt der App, bestehende Befehle im Terminalemulator für Android mit eigenen Versionen zu überschreiben (d. h. dem $PATH Verzeichnisse voranzustellen).</string>
 
     <string name="email_transcript_subject">Vom Terminalemulator für Android</string>
     <string name="email_transcript_chooser_title">E-Mail verschicken mit:</string>

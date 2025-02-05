@@ -2,6 +2,7 @@
 <!--
  * Copyright (C) 2008 The Android Open Source Project
  * Copyright (C) 2020-2023 Michal L
+ * Copyright (C) 2025 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -180,10 +181,6 @@
     <string name="permdesc_grp_term">Służy do uzyskiwania dostępu do funkcji emulatora terminala.</string>
     <string name="perm_run_script">Uruchamiaj komendy w Terminal Emulator</string>
     <string name="permdesc_run_script">Pozwala na otwieranie nowych okien w aplikacji Terminal Emulator dla systemu Android i wykonywanie poleceń w tych oknach ze wszystkimi uprawnieniami, w tym dostępem do Internetu i karty SD.</string>
-    <string name="perm_append_to_path">Dodawanie komend w Terminal Emulator</string>
-    <string name="permdesc_append_to_path">Pozwala na dodawanie dodatkowych poleceń (dodawanie katalogów do zmiennej PATH) dla aplikacji Terminal Emulator dla systemu Android.</string>
-    <string name="perm_prepend_to_path">Nadpisuj polecenia Terminal Emulator</string>
-    <string name="permdesc_prepend_to_path">Pozwól aplikacjom na nadpisywanie istniejących komend ich własnymi wersjami (dodawanie katalogów na początku PATH) w Terminal Emulator for Android.</string>
 
     <string name="email_transcript_subject">Transkrypt z aplikacji Terminal Emulator</string>
     <string name="email_transcript_chooser_title">Wyślij transkrypt używając:</string>
