@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018-2024 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2018-2025 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,8 +26,6 @@ import com.google.android.material.color.DynamicColors;
 import com.termoneplus.utils.ThemeManager;
 
 import java.io.File;
-
-import jackpal.androidterm.compat.PathSettings;
 
 
 public class Application extends android.app.Application {
@@ -82,15 +80,7 @@ public class Application extends android.app.Application {
         String s;
         String path = Application.xbindir.getPath();
 
-        s = PathSettings.getPrependPathVerified();
-        if (!TextUtils.isEmpty(s))
-            path += File.pathSeparator + s;
-
         s = System.getenv("PATH");
-        if (!TextUtils.isEmpty(s))
-            path += File.pathSeparator + s;
-
-        s = PathSettings.getAppendPathVerified();
         if (!TextUtils.isEmpty(s))
             path += File.pathSeparator + s;
 

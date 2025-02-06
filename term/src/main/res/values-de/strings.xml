@@ -197,12 +197,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <string name="title_close_window_on_process_exit_preference">Fenster beim Beenden schließen</string>
     <string name="summary_close_window_on_process_exit_preference">Soll das Fenster geschlossen werden, wenn die Shell beendet wird?</string>
 
-    <string name="title_verify_path_preference">PATH-Einträge prüfen</string>
-    <string name="summary_verify_path_preference">Sollen Verzeichnisse, auf die nicht zugegriffen werden kann, aus $PATH entfernt werden?</string>
-
-    <string name="title_collect_path_preference">PATH-Einträge abfragen</string>
-    <string name="summary_collect_path_preference">Sollen Verzeichnisse von anderen Apps abgefragt und dem $PATH hinzugefügt werden?</string>
-
     <string name="title_home_path_preference">HOME-Verzeichnis</string>
     <string name="summary_home_path_preference">Den Pfad zu einem beschreibbaren Verzeichnis festlegen, welches als $HOME genutzt werden soll.</string>
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022-2023 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2022-2025 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@ package com.termoneplus.compat;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -48,24 +47,6 @@ public class PackageManagerCompat {
             return Compat1.getActivityInfo(pm, name);
     }
 
-    public static ApplicationInfo getApplicationInfo(PackageManager pm, String name)
-            throws PackageManager.NameNotFoundException {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU /*API level 33*/)
-            return Compat33.getApplicationInfo(pm, name);
-        else
-            return Compat1.getApplicationInfo(pm, name);
-    }
-
-    public static int getApplicationUID(PackageManager pm, String name) {
-        ApplicationInfo ai;
-        try {
-            ai = getApplicationInfo(pm, name);
-        } catch (PackageManager.NameNotFoundException e) {
-            return -1;
-        }
-        return ai.uid;
-    }
-
     public static List<ResolveInfo> queryIntentActivities(PackageManager pm, Intent intent) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU /*API level 33*/)
             return Compat33.queryIntentActivities(pm, intent);
@@ -85,12 +66,6 @@ public class PackageManagerCompat {
                 throws PackageManager.NameNotFoundException {
             PackageManager.ComponentInfoFlags flags = PackageManager.ComponentInfoFlags.of(0);
             return pm.getActivityInfo(name, flags);
-        }
-
-        private static ApplicationInfo getApplicationInfo(PackageManager pm, String name)
-                throws PackageManager.NameNotFoundException {
-            PackageManager.ApplicationInfoFlags flags = PackageManager.ApplicationInfoFlags.of(0);
-            return pm.getApplicationInfo(name, flags);
         }
 
         private static List<ResolveInfo> queryIntentActivities(PackageManager pm, Intent intent) {
@@ -114,11 +89,6 @@ public class PackageManagerCompat {
         private static ActivityInfo getActivityInfo(PackageManager pm, ComponentName name)
                 throws PackageManager.NameNotFoundException {
             return pm.getActivityInfo(name, 0);
-        }
-
-        private static ApplicationInfo getApplicationInfo(PackageManager pm, String name)
-                throws PackageManager.NameNotFoundException {
-            return pm.getApplicationInfo(name, 0);
         }
 
         // Explicitly suppress deprecation warnings

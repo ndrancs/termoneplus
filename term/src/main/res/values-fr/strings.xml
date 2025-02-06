@@ -156,9 +156,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <string name="title_close_window_on_process_exit_preference">Quitter avec exit</string>
     <string name="summary_close_window_on_process_exit_preference">Quitter la fenêtre en cours en exécutant la commande exit</string>
 
-    <string name="title_verify_path_preference">Vérifier le PATH</string>
-    <string name="summary_verify_path_preference">Les répertoires inaccessibles seront retirés de PATH</string>
-
     <string name="title_home_path_preference">Dossier HOME</string>
     <string name="summary_home_path_preference">Chemin vers un dossier accessible en écriture pour être utilisé comme HOME.</string>
 

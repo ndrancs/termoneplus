@@ -120,9 +120,6 @@
     <string name="title_close_window_on_process_exit_preference">Lukk vinduet ved avslutning</string>
     <string name="summary_close_window_on_process_exit_preference">Velg om vinduet skal lukkes når skallet avsluttes.</string>
 
-    <string name="title_verify_path_preference">Kontroller oppføringer i PATH</string>
-    <string name="summary_verify_path_preference">Velg om utilgjengelige mapper skal fjernes fra PATH.</string>
-
     <string name="title_home_path_preference">HOME-mappe</string>
     <string name="summary_home_path_preference">Sti til en skrivbar mappe som skal brukes som HOME.</string>
 

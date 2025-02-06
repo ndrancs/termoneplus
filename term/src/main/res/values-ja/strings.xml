@@ -116,9 +116,6 @@
     <string name="title_close_window_on_process_exit_preference">終了時にウインドウを閉じる</string>
     <string name="summary_close_window_on_process_exit_preference">シェル終了時にウインドウを閉じるか否か.</string>
 
-    <string name="title_verify_path_preference">PATHエントリを照合</string>
-    <string name="summary_verify_path_preference">アクセス不可ディレクトリをPATHから取り除くべきか否か.</string>
-
     <string name="control_key_dialog_title">コントロールキーとファンクションキー</string>
     <!-- The word CTRLKEY should be left un-translated. It will be replaced at run-time with the
          actual control key key name. -->

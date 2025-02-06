@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright (C) 2008 The Android Open Source Project
-     Copyright (C) 2018-2024 Roumen Petrov.  All rights reserved.
+     Copyright (C) 2018-2025 Roumen Petrov.  All rights reserved.
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -234,22 +234,6 @@
             android:summaryOff="@string/use_keyboard_shortcuts_summary_off"
             android:summaryOn="@string/use_keyboard_shortcuts_summary_on"
             android:title="@string/title_use_keyboard_shortcuts"/>
-
-    </PreferenceCategory>
-
-    <PreferenceCategory>
-
-        <CheckBoxPreference
-            android:defaultValue="@bool/pref_verify_path_default"
-            android:key="@string/key_verify_path_preference"
-            android:summary="@string/summary_verify_path_preference"
-            android:title="@string/title_verify_path_preference"/>
-
-        <CheckBoxPreference
-            android:defaultValue="@bool/pref_collect_path_default"
-            android:key="@string/key_collect_path_preference"
-            android:summary="@string/summary_collect_path_preference"
-            android:title="@string/title_collect_path_preference"/>
 
     </PreferenceCategory>
 

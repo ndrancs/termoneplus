@@ -104,9 +104,6 @@
 
     <string name="title_close_window_on_process_exit_preference">Închideți fereastra la ieșire</string>
 
-    <string name="title_verify_path_preference">Verificați intrările PATH</string>
-    <string name="summary_verify_path_preference">Dacă directoare inaccesibile ar trebui să fie eliminate din PATH.</string>
-
     <string name="control_key_dialog_title">Tastele control şi funcționale</string>
     <string name="control_key_dialog_control_disabled_text">Nici o tastă control setată.</string>
     <string name="control_key_dialog_fn_disabled_text">Nici o tastă funcţie setată.</string>

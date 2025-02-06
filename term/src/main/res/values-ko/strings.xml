@@ -120,9 +120,6 @@
     <string name="title_close_window_on_process_exit_preference">종료 시에 창 닫기</string>
     <string name="summary_close_window_on_process_exit_preference">터미널 프로세스가 종료되면 활성화된 창을 닫습니다.</string>
 
-    <string name="title_verify_path_preference">PATH 경로 확인</string>
-    <string name="summary_verify_path_preference">액세스할 수 없는 경로가 PATH에서 제거되어야할지 확인합니다.</string>
-
     <string name="title_home_path_preference">HOME 경로</string>
     <string name="summary_home_path_preference">HOME으로 설정 가능한 경로 (쓰기 가능한 경로)를 설정합니다.</string>
 

@@ -116,9 +116,6 @@
     <string name="title_close_window_on_process_exit_preference">ფანჯრის დახურვა გასვლისას</string>
     <string name="summary_close_window_on_process_exit_preference">უნდა დაიხუროს თუ არა ფანჯარა გარსიდან გამოსვლის დროს.</string>
 
-    <string name="title_verify_path_preference">გარსის ცვლად PATH-ის გადამოწმება</string>
-    <string name="summary_verify_path_preference">უნდა იყოს თუ არა ამოღებული PATH-დან მიუწვდომელი დასტები.</string>
-
     <string name="control_key_dialog_title">Control და Function ღილაკები</string>
     <!-- The word CTRLKEY should be left un-translated. It will be replaced at run-time with the
          actual control key key name. -->

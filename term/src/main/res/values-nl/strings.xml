@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
  * Copyright (C) 2008 The Android Open Source Project
+ * Copyright (C) 2025 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -110,9 +111,6 @@
 
     <string name="title_close_window_on_process_exit_preference">Venster sluiten bij exit</string>
     <string name="summary_close_window_on_process_exit_preference">Venster sluiten als de shell afgesloten wordt</string>
-
-    <string name="title_verify_path_preference">PATH entries controleren</string>
-    <string name="summary_verify_path_preference">Controleren of ontoegankelijk directories verwijderd moeten worden uit het PATH</string>
 
     <string name="title_home_path_preference">HOME folder</string>
     <string name="summary_home_path_preference">Pad naar een beschrijfbare map te gebruiken als HOME</string>

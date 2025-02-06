@@ -120,9 +120,6 @@
     <string name="title_close_window_on_process_exit_preference">Chiudi finestra all\'uscita</string>
     <string name="summary_close_window_on_process_exit_preference">Chiusura della finestra quando la sua shell termina.</string>
 
-    <string name="title_verify_path_preference">Verifica voci PATH</string>
-    <string name="summary_verify_path_preference">Rimuovi cartelle inaccessibili da PATH.</string>
-
     <string name="title_home_path_preference">Cartella HOME</string>
     <string name="summary_home_path_preference">Inserisci il percorso di una cartella scrivibile da usare come HOME.</string>
 

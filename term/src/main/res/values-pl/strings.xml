@@ -156,12 +156,6 @@
     <string name="title_close_window_on_process_exit_preference">Zamknij okno przy wyjściu</string>
     <string name="summary_close_window_on_process_exit_preference">Określa, czy okno powinno zamykać się po zamknięciu powłoki.</string>
 
-    <string name="title_verify_path_preference">Weryfikuj ścieżki PATH</string>
-    <string name="summary_verify_path_preference">Określa, czy niedostępne katalogi powinny być usunięte ze zmiennej PATH.</string>
-
-    <string name="title_collect_path_preference">Zbierz wpisy PATH</string>
-    <string name="summary_collect_path_preference">Zbierz katalogi z innych aplikacji, aby dodać je jako wpisy PATH.</string>
-
     <string name="title_home_path_preference">Folder domowy (HOME)</string>
     <string name="summary_home_path_preference">Ścieżka do folderu z możliwością zapisu, który będzie używany jako folder domowy (HOME)</string>
 

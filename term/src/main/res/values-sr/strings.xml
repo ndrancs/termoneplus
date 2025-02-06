@@ -120,9 +120,6 @@
     <string name="title_close_window_on_process_exit_preference">Затвори прозор по излазу</string>
     <string name="summary_close_window_on_process_exit_preference">Да ли да прозор буде затворен по излазу из његове шкољке.</string>
 
-    <string name="title_verify_path_preference">Овери PATH уносе</string>
-    <string name="summary_verify_path_preference">Да ли да недоступни директоријуми буду уклољени из PATH.</string>
-
     <string name="title_home_path_preference">Домаћа фасцикла</string>
     <string name="summary_home_path_preference">Путања до уписиве фасцикле која ће бити коришћена као HOME.</string>
 
