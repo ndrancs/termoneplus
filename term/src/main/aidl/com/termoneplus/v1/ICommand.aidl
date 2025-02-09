@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023-2024 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2023-2025 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,4 @@ interface ICommand {
 
     @nullable
     ParcelFileDescriptor openConfiguration(in String path) = 3;
-
-    /** @deprecated, TODO remove transaction code from methods as well */
-    String legacyAppDir(in String code) = 99;
 }

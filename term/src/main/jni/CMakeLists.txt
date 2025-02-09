@@ -84,20 +84,3 @@ target_compile_options(
 target_link_libraries(
         appwrap
 )
-
-# TODO deprecated
-add_library(
-        appinfo
-        SHARED
-        appinfo.c
-        socket.c
-        atomicio.c
-)
-target_compile_definitions(
-        appinfo
-        PRIVATE
-        PACKAGE_NAME="${APPLICATION_ID}"
-)
-target_link_libraries(
-        appinfo
-)
