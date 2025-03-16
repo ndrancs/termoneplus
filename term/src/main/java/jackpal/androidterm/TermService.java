@@ -178,12 +178,9 @@ public class TermService extends SessionsService {
             */
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M /*API level 23*/)
                 flags |= PendingIntent.FLAG_IMMUTABLE;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN /*API level 16*/)
-                return Compat16.get(context, requestCode, intent, flags);
-            return Compat.get(context, requestCode, intent, flags);
+            return Compat16.get(context, requestCode, intent, flags);
         }
 
-        @RequiresApi(16)
         private static class Compat16 {
             private static PendingIntent get(Context context, int requestCode, Intent intent, int flags) {
                 // Note java.lang.IllegalArgumentException on Android 15 /*API level 35*/ if target is 35:
@@ -196,12 +193,6 @@ public class TermService extends SessionsService {
                 //    options.setPendingIntentBackgroundActivityLaunchAllowed(true);
                 //    bundle = options.toBundle();
                 return PendingIntent.getActivity(context, requestCode, intent, flags, null);
-            }
-        }
-
-        private static class Compat {
-            private static PendingIntent get(Context context, int requestCode, Intent intent, int flags) {
-                return PendingIntent.getActivity(context, requestCode, intent, flags);
             }
         }
     }

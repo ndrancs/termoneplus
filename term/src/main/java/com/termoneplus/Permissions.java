@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018-2024 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2018-2025 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,8 +43,7 @@ public class Permissions {
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q /*API Level 29*/)
             list.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN /*API Level 16*/ &&
-                Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2 /*API Level 32*/) {
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2 /*API Level 32*/) {
             // implicitly granted if WRITE_EXTERNAL_STORAGE is requested
             // starting in API level 33, this permission has no effect.
             list.add(Manifest.permission.READ_EXTERNAL_STORAGE);

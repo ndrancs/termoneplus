@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2022 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2017-2025 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,6 @@ import com.google.android.material.navigation.NavigationView;
 import com.termoneplus.utils.WrapOpenURL;
 
 import androidx.annotation.ColorInt;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -209,32 +208,15 @@ public class TermActionBar {
             if (theme.resolveAttribute(androidx.appcompat.R.attr.colorPrimaryDark, typedValue, true))
                 colors[2] = typedValue.data;
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN /* API Level 16*/)
-                Compat16.setColors(view, colors);
-            else
-                Compat1.setColors(view, colors);
+            Compat16.setColors(view, colors);
         }
 
-        @RequiresApi(16)
         private static class Compat16 {
             private static void setColors(NavigationView view, int[] colors) {
                 try {
                     View header = view.getHeaderView(0);
                     GradientDrawable drawable = (GradientDrawable) header.getBackground();
                     drawable.setColors(colors);
-                } catch (Exception ignore) {
-                }
-            }
-        }
-
-        private static class Compat1 {
-            // note suppression is not redundant - for setBackgroundDrawable
-            @SuppressWarnings("deprecation")
-            private static void setColors(NavigationView view, int[] colors) {
-                try {
-                    View header = view.getHeaderView(0);
-                    GradientDrawable drawable = new GradientDrawable(GradientDrawable.Orientation.TL_BR, colors);
-                    header.setBackgroundDrawable(drawable);
                 } catch (Exception ignore) {
                 }
             }

@@ -70,8 +70,7 @@ public final class PRNGFixes {
      * @throws SecurityException if the fix is needed but could not be applied.
      */
     private static void applyOpenSSLFix() throws SecurityException {
-        if ((Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN /*API Level 16*/)
-                || (Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR2 /*API Level 18*/)) {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR2 /*API Level 18*/) {
             // No need to apply the fix
             return;
         }

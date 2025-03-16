@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2024 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2019-2025 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,6 @@
 package com.termoneplus;
 
 import android.content.res.AssetManager;
-import android.os.Build;
 import android.text.TextUtils;
 
 import com.termoneplus.compat.FilesCompat;
@@ -67,12 +66,7 @@ public class Installer {
             shell_script.add(". " + sysmkshrc);
 
         // Source application startup script
-        // Test command is not supported by built-in shell on devices before API Level 16("Jelly Bean"/4.1).
-        // Jelly Bean switchs to "MIRBSD KSH R40 2011/10/07" where test is a shell built-in.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN /*API level 16*/)
-            shell_script.add("test -f ~/.shrc && . ~/.shrc");
-        else
-            shell_script.add(". ~/.shrc");
+        shell_script.add("test -f ~/.shrc && . ~/.shrc");
 
         //Next work fine with mksh but fail with ash.
         //shell_script.add(". /proc/self/fd/0 <<< \"$(libexec-t1plus.so aliases)\"");
