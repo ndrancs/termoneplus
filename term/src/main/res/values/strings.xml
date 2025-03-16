@@ -66,6 +66,7 @@
     <string name="window_title">Window %1$d</string>
 
     <string name="service_notify_text">Terminal session is running</string>
+    <string name="service_timeout_text">System terminates long-running terminal sessions</string>
 
     <string name="process_exit_message">Terminal session finished</string>
 

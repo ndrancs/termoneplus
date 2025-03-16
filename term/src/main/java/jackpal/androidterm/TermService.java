@@ -116,6 +116,26 @@ public class TermService extends SessionsService {
     }
 
     @Override
+    public void onTimeout(int startId, int fgsType) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M /*API Level 23*/) {
+            NotificationManager notificationManager = this.getApplicationContext().getSystemService(NotificationManager.class);
+            notificationManager.notify(
+                    RUNNING_NOTIFICATION,
+                    buildNotification(this.getApplicationContext(), (context, builder) -> {
+                                CharSequence msg = context.getText(R.string.service_timeout_text);
+                                builder.setContentText(msg).setTicker(msg);
+                            }
+                    ));
+        }
+
+        command_service.stop();
+        clearSessions();
+        StopForeground.stop(this);
+        super.onTimeout(startId, fgsType);
+        stopSelf();
+    }
+
+    @Override
     public void onDestroy() {
         command_service.stop();
         clearSessions();
@@ -209,7 +229,7 @@ public class TermService extends SessionsService {
         @RequiresApi(24)
         private static class Compat24 {
             private static void stop(Service service) {
-                service.stopForeground(STOP_FOREGROUND_REMOVE);
+                service.stopForeground(STOP_FOREGROUND_DETACH);
             }
         }
 
