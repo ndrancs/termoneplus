@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2007 The Android Open Source Project
- * Copyright (C) 2018-2022 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2018-2025 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -268,6 +268,8 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
      */
     private int createLinks(int row) {
         TranscriptScreen transcriptScreen = mEmulator.getScreen();
+        if (transcriptScreen == null) return 0;
+
         char[] line = transcriptScreen.getScriptLine(row);
         int lineCount = 1;
 
@@ -1019,11 +1021,15 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
     }
 
     private int getActiveRows() {
-        return mEmulator.getScreen().getActiveRows();
+        TranscriptScreen screen = mEmulator.getScreen();
+        if (screen == null) return 0;
+        return screen.getActiveRows();
     }
 
     private int getActiveTranscriptRows() {
-        return mEmulator.getScreen().getActiveTranscriptRows();
+        TranscriptScreen screen = mEmulator.getScreen();
+        if (screen == null) return 0;
+        return screen.getActiveTranscriptRows();
     }
 
 
