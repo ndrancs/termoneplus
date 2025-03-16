@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2007 The Android Open Source Project
- * Copyright (C) 2022 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2022-2025 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -87,9 +87,13 @@ class ByteQueue {
 
         synchronized (this) {
             int bufferLength = mBuffer.length;
+
+            int count = 3;
             while (bufferLength == mStoredBytes) {
-                wait();
+                if (count-- <= 0) return 0;
+                wait(1000/*1 sec.*/);
             }
+
             int tail = mHead + mStoredBytes;
             int oneRun;
             if (tail >= bufferLength) {

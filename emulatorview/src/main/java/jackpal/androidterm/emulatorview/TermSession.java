@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2007 The Android Open Source Project
- * Copyright (C) 2018-2023 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2018-2025 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -653,7 +653,8 @@ public class TermSession {
                         int written = mByteQueue.write(buffer, offset, read);
                         offset += written;
                         read -= written;
-                        handler.sendEmptyMessage(NEW_INPUT);
+                        if (written > 0)
+                            handler.sendEmptyMessage(NEW_INPUT);
                     }
                 }
             } catch (IOException ignored) {
