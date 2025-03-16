@@ -598,7 +598,7 @@ class UnicodeTranscript {
                 if (tmpLine == null || tmpLine.length < columns + 1) {
                     tmpLine = new char[columns+1];
                 }
-                int length = x2 - x1;
+                int length = Math.max(x2 - x1, 0);
                 System.arraycopy(mLines[row], x1, tmpLine, 0, length);
                 tmpLine[length] = 0;
                 return tmpLine;
