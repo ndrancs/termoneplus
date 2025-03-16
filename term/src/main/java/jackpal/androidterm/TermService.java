@@ -40,6 +40,9 @@ import android.os.ResultReceiver;
 import android.text.TextUtils;
 import android.util.Log;
 
+import androidx.annotation.RequiresApi;
+import androidx.core.app.NotificationCompat;
+
 import com.termoneplus.Application;
 import com.termoneplus.BuildConfig;
 import com.termoneplus.R;
@@ -51,8 +54,6 @@ import com.termoneplus.services.SessionsService;
 
 import java.util.UUID;
 
-import androidx.annotation.RequiresApi;
-import androidx.core.app.NotificationCompat;
 import jackpal.androidterm.emulatorview.TermSession;
 import jackpal.androidterm.libtermexec.v1.ITerminal;
 import jackpal.androidterm.util.TermSettings;
@@ -64,7 +65,7 @@ public class TermService extends SessionsService {
     private final IBinder mTSBinder = new TSBinder();
     private CommandService command_service;
 
-    private static Notification buildNotification(Context context) {
+    private static Notification buildNotification(Context context, NotificationSettings callback) {
         NotificationChannelCompat.create(context);
 
         Intent notifyIntent = TermActivity.getNotificationIntent(context);
@@ -75,13 +76,12 @@ public class TermService extends SessionsService {
                 Application.NOTIFICATION_CHANNEL_SESSIONS)
                 .setSmallIcon(R.drawable.ic_stat_service_notification_icon)
                 .setContentTitle(context.getText(R.string.application_terminal))
-                .setContentText(context.getText(R.string.service_notify_text))
                 .setCategory(NotificationCompat.CATEGORY_SERVICE)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setTicker(context.getText(R.string.service_notify_text))
                 .setWhen(System.currentTimeMillis())
                 .setOngoing(true)
                 .setContentIntent(pendingIntent);
+        callback.set(context, builder);
         return builder.build();
     }
 
@@ -124,8 +124,20 @@ public class TermService extends SessionsService {
 
 
     private Notification buildNotification() {
-        return buildNotification(this.getApplicationContext());
+        return buildNotification(this.getApplicationContext(),
+                (context, builder) -> {
+                    CharSequence msg = context.getText(R.string.service_notify_text);
+                    builder.setContentText(msg).setTicker(msg);
+                }
+        );
     }
+
+
+    @FunctionalInterface
+    interface NotificationSettings {
+        void set(Context context, NotificationCompat.Builder builder);
+    }
+
 
     private static class NotificationChannelCompat {
         private static void create(Context context) {
