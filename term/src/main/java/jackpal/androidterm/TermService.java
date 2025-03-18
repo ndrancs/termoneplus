@@ -140,6 +140,12 @@ public class TermService extends SessionsService {
         command_service.stop();
         clearSessions();
         StopForeground.stop(this);
+        super.onDestroy();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM /*API Level 35*/) {
+            // forced VM exist may start new timeout counter ...
+            System.exit(0);
+        }
     }
 
 
