@@ -703,9 +703,9 @@ public class TermSession {
                 // Ignore exception
                 // We don't really care if the receiver isn't listening.
                 // We just make a best effort to answer the query.
-                e.printStackTrace();
+                e.printStackTrace(System.err);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                e.printStackTrace(System.err);
             }
         }
     }

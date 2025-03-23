@@ -45,7 +45,7 @@ public class CommandService implements UnixSocketServer.ConnectionHandler {
         try {
             socket = new UnixSocketServer(socket_prefix + Process.myUid(), this);
         } catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.err);
         }
     }
 

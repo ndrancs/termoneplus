@@ -75,7 +75,7 @@ public class TermActivity extends jackpal.androidterm.Term {
             ScreenMessage.show(getApplicationContext(),
                     R.string.script_source_content_error);
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(System.err);
         }
     }
 
