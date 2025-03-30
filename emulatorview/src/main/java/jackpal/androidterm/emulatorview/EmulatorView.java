@@ -50,6 +50,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Hashtable;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import jackpal.androidterm.emulatorview.compat.KeycodeConstants;
 import jackpal.androidterm.emulatorview.compat.Patterns;
@@ -80,7 +81,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
      * the Asus Transformer TF101.
      * It doesn't seem to harm anything else, but it also doesn't seem to be
      * required on other platforms.
-     *
+     * <p>
      * This test should be refined as we learn more.
      */
     private static final boolean sTrapAltAndMeta = Build.MODEL.contains("Transformer TF101");
@@ -113,7 +114,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
      * Our terminal emulator key listener.
      */
     private TermKeyListener mKeyListener;
-    private KeyListenerParam key_listener_param = new KeyListenerParam();
+    private final KeyListenerParam key_listener_param = new KeyListenerParam();
 
     /**
      * Total width of each character, in pixels
@@ -150,6 +151,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
      */
     private int mTextSize = 10;
 
+    @SuppressWarnings("unused")
     private int mCursorBlink;
 
     /**
@@ -990,6 +992,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
      *
      * @return The width of the visible portion of this view, in pixels.
      */
+    @SuppressWarnings("unused")
     public int getVisibleWidth() {
         return mVisibleWidth;
     }
@@ -1008,6 +1011,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
      * @return The rows for the visible number of rows, this is calculate in updateSize(int w, int h), please call
      * updateSize(true) if the view changed, to get the correct calculation before calling this.
      */
+    @SuppressWarnings("unused")
     public int getVisibleRows() {
       return mVisibleRows;
     }
@@ -1016,6 +1020,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
      * Gets the visible number of columns for the view, again useful to get when updating PTYsize
      * @return the columns for the visisble view, please call updateSize(true) to re-calculate this if the view has changed
      */
+    @SuppressWarnings("unused")
     public int getVisibleColumns() {
       return mVisibleColumns;
     }
@@ -1040,6 +1045,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
      * @param delta The number of screens to scroll. Positive means scroll down,
      *        negative means scroll up.
      */
+    @SuppressWarnings("unused")
     public void page(int delta) {
         updateTopRow(delta * mRows);
         invalidate();
@@ -1055,6 +1061,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
      * @param deltaColumns the number of columns to scroll. Positive scrolls to
      *        the right.
      */
+    @SuppressWarnings("unused")
     public void pageHorizontal(int deltaColumns) {
         updateLeftColumn(deltaColumns);
         invalidate();
@@ -1069,6 +1076,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
      *
      * @param typeface the new typeface.
      */
+    @SuppressWarnings("unused")
     public void setTypeFace(Typeface typeface) {
         this.typeface = typeface;
         updateText();
@@ -1079,6 +1087,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
      *
      * @param fontSize the new font size, in density-independent pixels.
      */
+    @SuppressWarnings("unused")
     public void setTextSize(int fontSize) {
         mTextSize = (int) (fontSize * mDensity);
         updateText();
@@ -1162,7 +1171,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
 
     // Begin GestureDetector.OnGestureListener methods
 
-    public boolean onSingleTapUp(MotionEvent e) {
+    public boolean onSingleTapUp(@NonNull MotionEvent e) {
         if (mExtGestureListener != null && mExtGestureListener.onSingleTapUp(e)) {
             return true;
         }
@@ -1176,13 +1185,13 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
         return true;
     }
 
-    public void onLongPress(MotionEvent e) {
+    public void onLongPress(@NonNull MotionEvent e) {
         // XXX hook into external gesture listener
         showContextMenu();
     }
 
-    public boolean onScroll(MotionEvent e1, MotionEvent e2,
-            float distanceX, float distanceY) {
+    public boolean onScroll(MotionEvent e1, @NonNull MotionEvent e2,
+                            float distanceX, float distanceY) {
         if (mExtGestureListener != null && mExtGestureListener.onScroll(e1, e2, distanceX, distanceY)) {
             return true;
         }
@@ -1208,9 +1217,11 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
         return true;
     }
 
+    @SuppressWarnings("unused")
     public void onSingleTapConfirmed(MotionEvent e) {
     }
 
+    @SuppressWarnings("unused")
     public boolean onJumpTapDown(MotionEvent e1, MotionEvent e2) {
        // Scroll to bottom
        mTopRow = 0;
@@ -1218,6 +1229,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
        return true;
     }
 
+    @SuppressWarnings("unused")
     public boolean onJumpTapUp(MotionEvent e1, MotionEvent e2) {
         // Scroll to top
         mTopRow = -getActiveTranscriptRows();
@@ -1225,8 +1237,8 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
         return true;
     }
 
-    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
-            float velocityY) {
+    public boolean onFling(MotionEvent e1, @NonNull MotionEvent e2, float velocityX,
+                           float velocityY) {
         if (mExtGestureListener != null && mExtGestureListener.onFling(e1, e2, velocityX, velocityY)) {
             return true;
         }
@@ -1246,13 +1258,13 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
         return true;
     }
 
-    public void onShowPress(MotionEvent e) {
+    public void onShowPress(@NonNull MotionEvent e) {
         if (mExtGestureListener != null) {
             mExtGestureListener.onShowPress(e);
         }
     }
 
-    public boolean onDown(MotionEvent e) {
+    public boolean onDown(@NonNull MotionEvent e) {
         if (mExtGestureListener != null && mExtGestureListener.onDown(e)) {
             return true;
         }
@@ -1460,6 +1472,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
         return false;
     }
 
+    @SuppressWarnings("unused")
     private boolean isSystemKey(int keyCode, KeyEvent event) {
         return event.isSystem();
     }
@@ -1560,7 +1573,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
      * @param canvas The {@link Canvas} to draw the view to.
      */
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(@NonNull Canvas canvas) {
         updateSize(false);
 
         if (mEmulator == null) {
