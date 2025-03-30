@@ -963,9 +963,8 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
         updateText();
 
         mEmulator = session.getEmulator();
-        session.setUpdateCallback(mUpdateNotify);
-
         mKeyListener = mEmulator.getKeyListener();
+
         if (key_listener_param.BackKeyCharacter != null)
             setBackKeyCharacter(key_listener_param.BackKeyCharacter);
         if (key_listener_param.AltSendsEsc != null)
@@ -973,6 +972,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
         if (key_listener_param.TermType != null)
             setTermType(key_listener_param.TermType);
 
+        session.setUpdateCallback(mUpdateNotify);
         requestFocus();
     }
 
