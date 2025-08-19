@@ -14,7 +14,7 @@ def termApplicationId = "com.termoneplus"
 android {
     namespace 'com.termoneplus.sample.addon'
 
-    compileSdk rootProject.ext.compileSdk
+    compileSdk = rootProject.ext.compileSdk
     buildToolsVersion = rootProject.ext.buildToolsVersion
     ndkVersion rootProject.ext.ndkVersion
     defaultConfig {

@@ -11,7 +11,7 @@ java {
 android {
     namespace "jackpal.androidterm.sample.telnet"
 
-    compileSdk rootProject.ext.compileSdk
+    compileSdk = rootProject.ext.compileSdk
     buildToolsVersion = rootProject.ext.buildToolsVersion
     defaultConfig {
         applicationId "com.termoneplus.sample.telnet"

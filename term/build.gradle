@@ -11,7 +11,7 @@ java {
 android {
     namespace "com.termoneplus"
 
-    compileSdk rootProject.ext.compileSdk
+    compileSdk = rootProject.ext.compileSdk
     buildToolsVersion = rootProject.ext.buildToolsVersion
     ndkVersion rootProject.ext.ndkVersion
     defaultConfig {
