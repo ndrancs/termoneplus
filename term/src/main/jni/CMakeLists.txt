@@ -1,5 +1,5 @@
 ##
-# Copyright (C) 2019-2024 Roumen Petrov.  All rights reserved.
+# Copyright (C) 2019-2025 Roumen Petrov.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -39,6 +39,10 @@ target_link_libraries(
         libexec-t1plus.so
         -pie
 )
+target_link_options(
+        libexec-t1plus.so
+        PRIVATE "-Wl,-z,max-page-size=16384"
+)
 
 add_executable(
         libcmd-t1plus.so
@@ -62,6 +66,10 @@ target_link_libraries(
         libcmd-t1plus.so
         -pie
 )
+target_link_options(
+        libcmd-t1plus.so
+        PRIVATE "-Wl,-z,max-page-size=16384"
+)
 
 add_library(
         appwrap
@@ -83,4 +91,8 @@ target_compile_options(
 )
 target_link_libraries(
         appwrap
+)
+target_link_options(
+        appwrap
+        PRIVATE "-Wl,-z,max-page-size=16384"
 )
