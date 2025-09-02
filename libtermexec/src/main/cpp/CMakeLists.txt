@@ -17,6 +17,15 @@
 cmake_minimum_required(VERSION 3.10)
 project(libtermexec-c)
 
+# Android NDK r26 and lower
+if (ANDROID_ABI STREQUAL "arm64-v8a")
+    set(MAX_PAGE_SIZE "-Wl,-z,max-page-size=16384")
+elseif (ANDROID_ABI STREQUAL "x86_64")
+    set(MAX_PAGE_SIZE "-Wl,-z,max-page-size=16384")
+else ()
+    set(MAX_PAGE_SIZE "")
+endif ()
+
 add_library(
         term-system
         SHARED
@@ -38,5 +47,6 @@ target_link_libraries(
 )
 target_link_options(
         term-system
-        PRIVATE "-Wl,-z,max-page-size=16384"
+        PRIVATE
+        "${MAX_PAGE_SIZE}"
 )
