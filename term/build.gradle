@@ -82,8 +82,9 @@ android {
             }
         }
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            minifyEnabled = false
+            // use default file with automatically generated optimization rules/R8 optimizer
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.txt'
         }
     }
     buildFeatures {
