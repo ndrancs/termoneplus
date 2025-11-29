@@ -9,11 +9,11 @@ java {
 }
 
 android {
-    namespace "com.termoneplus"
+    namespace = "com.termoneplus"
 
     compileSdk = rootProject.ext.compileSdk
     buildToolsVersion = rootProject.ext.buildToolsVersion
-    ndkVersion rootProject.ext.ndkVersion
+    ndkVersion = rootProject.ext.ndkVersion
     defaultConfig {
         applicationId "com.termoneplus"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -88,12 +88,12 @@ android {
         }
     }
     buildFeatures {
-        aidl true
-        buildConfig true
+        aidl = true
+        buildConfig = true
     }
     packagingOptions {
         jniLibs {
-            useLegacyPackaging true
+            useLegacyPackaging = true
         }
     }
 

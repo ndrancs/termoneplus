@@ -9,11 +9,11 @@ java {
 }
 
 android {
-    namespace "jackpal.androidterm.libtermexec"
+    namespace = "jackpal.androidterm.libtermexec"
 
     compileSdk = rootProject.ext.compileSdk
     buildToolsVersion = rootProject.ext.buildToolsVersion
-    ndkVersion rootProject.ext.ndkVersion
+    ndkVersion = rootProject.ext.ndkVersion
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
@@ -41,7 +41,7 @@ android {
         }
     }
     buildFeatures {
-        aidl true
+        aidl = true
     }
 }
 

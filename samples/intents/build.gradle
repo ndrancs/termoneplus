@@ -12,7 +12,7 @@ java {
 def termApplicationId = "com.termoneplus"
 
 android {
-    namespace "com.termoneplus.sample.intents"
+    namespace = "com.termoneplus.sample.intents"
 
     compileSdk = rootProject.ext.compileSdk
     buildToolsVersion = rootProject.ext.buildToolsVersion
@@ -51,7 +51,7 @@ android {
         }
     }
     buildFeatures {
-        buildConfig true
+        buildConfig = true
     }
 }
 

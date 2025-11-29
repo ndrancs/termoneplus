@@ -12,7 +12,7 @@ java {
 def termApplicationId = "com.termoneplus"
 
 android {
-    namespace "jackpal.androidterm.sample.pathbroadcasts"
+    namespace = "jackpal.androidterm.sample.pathbroadcasts"
 
     compileSdk = rootProject.ext.compileSdk
     buildToolsVersion = rootProject.ext.buildToolsVersion
@@ -51,6 +51,6 @@ android {
         }
     }
     buildFeatures {
-        buildConfig true
+        buildConfig = true
     }
 }

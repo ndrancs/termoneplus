@@ -9,7 +9,7 @@ java {
 }
 
 android {
-    namespace "jackpal.androidterm.sample.telnet"
+    namespace = "jackpal.androidterm.sample.telnet"
 
     compileSdk = rootProject.ext.compileSdk
     buildToolsVersion = rootProject.ext.buildToolsVersion

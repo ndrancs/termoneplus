@@ -12,11 +12,11 @@ java {
 def termApplicationId = "com.termoneplus"
 
 android {
-    namespace 'com.termoneplus.sample.addon'
+    namespace = 'com.termoneplus.sample.addon'
 
     compileSdk = rootProject.ext.compileSdk
     buildToolsVersion = rootProject.ext.buildToolsVersion
-    ndkVersion rootProject.ext.ndkVersion
+    ndkVersion = rootProject.ext.ndkVersion
     defaultConfig {
         applicationId "com.termoneplus.sample.addon"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -52,12 +52,12 @@ android {
         }
     }
     buildFeatures {
-        aidl true
-        buildConfig true
+        aidl = true
+        buildConfig = true
     }
     packagingOptions {
         jniLibs {
-            useLegacyPackaging true
+            useLegacyPackaging = true
         }
     }
 }

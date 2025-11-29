@@ -9,7 +9,7 @@ java {
 }
 
 android {
-    namespace "jackpal.androidterm.emulatorview"
+    namespace = "jackpal.androidterm.emulatorview"
 
     compileSdk = rootProject.ext.compileSdk
     buildToolsVersion = rootProject.ext.buildToolsVersion
