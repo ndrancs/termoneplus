@@ -28,6 +28,7 @@ import android.content.IntentSender;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ServiceInfo;
 import android.net.Uri;
 import android.os.Binder;
 import android.os.Build;
@@ -107,7 +108,7 @@ public class TermService extends SessionsService {
     public void onCreate() {
         /* Put the service in the foreground. */
         Notification notification = buildNotification();
-        startForeground(RUNNING_NOTIFICATION, notification);
+        StartForeground.start(this, notification);
 
         command_service = new CommandService(this);
         command_service.start();
@@ -219,6 +220,33 @@ public class TermService extends SessionsService {
                 //    options.setPendingIntentBackgroundActivityLaunchAllowed(true);
                 //    bundle = options.toBundle();
                 return PendingIntent.getActivity(context, requestCode, intent, flags, null);
+            }
+        }
+    }
+
+
+    private static class StartForeground {
+        private static void start(Service service, Notification notification) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q /*API level 29*/)
+                Compat29.start(service, notification);
+            else
+                Compat5.start(service, notification);
+        }
+
+        @RequiresApi(29)
+        private static class Compat29 {
+            private static void start(Service service, Notification notification) {
+                // NOTE: foregroundServiceType argument should match Android manifest:
+                // - service
+                // - uses-permission
+                service.startForeground(RUNNING_NOTIFICATION, notification,
+                        ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC);
+            }
+        }
+
+        private static class Compat5 {
+            private static void start(Service service, Notification notification) {
+                service.startForeground(RUNNING_NOTIFICATION, notification);
             }
         }
     }
