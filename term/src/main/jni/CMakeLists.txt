@@ -1,5 +1,5 @@
 ##
-# Copyright (C) 2019-2025 Roumen Petrov.  All rights reserved.
+# Copyright (C) 2019-2026 Roumen Petrov.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,10 @@
 # limitations under the License.
 ##
 
-cmake_minimum_required(VERSION 3.10)
+#cmake_minimum_required(VERSION 3.10)
+# Note target_link_options(...) is introduced in CMake 3.13.
+cmake_minimum_required(VERSION 3.13)
+
 project(term-c)
 
 # Android NDK r26 and lower
