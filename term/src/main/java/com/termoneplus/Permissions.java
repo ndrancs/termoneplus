@@ -43,9 +43,9 @@ public class Permissions {
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q /*API Level 29*/)
             list.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
+        // Implicitly granted if WRITE_EXTERNAL_STORAGE is requested.
+        // Starting in API level 33, this permission has no effect.
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2 /*API Level 32*/) {
-            // implicitly granted if WRITE_EXTERNAL_STORAGE is requested
-            // starting in API level 33, this permission has no effect.
             list.add(Manifest.permission.READ_EXTERNAL_STORAGE);
         }
 
