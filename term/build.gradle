@@ -96,10 +96,6 @@ android {
             useLegacyPackaging = true
         }
     }
-
-    applicationVariants.configureEach { variant ->
-        variant.resValue "string", "application_version", variant.versionName
-    }
 }
 
 dependencies {

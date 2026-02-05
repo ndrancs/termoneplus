@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2025 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2017-2026 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,9 +25,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Spinner;
-
-import com.google.android.material.navigation.NavigationView;
-import com.termoneplus.utils.WrapOpenURL;
+import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.appcompat.app.ActionBar;
@@ -36,6 +34,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.material.navigation.NavigationView;
+import com.termoneplus.utils.WrapOpenURL;
 
 
 /**
@@ -71,6 +72,8 @@ public class TermActionBar {
         NavigationBackground.presetColors(context, nav_view);
         {
             View header = nav_view.getHeaderView(0);
+            TextView ver = header.findViewById(R.id.app_ver);
+            ver.setText(Application.VER);
             View home = header.findViewById(R.id.app_home);
             home.setOnClickListener(this::onAppIconClicked);
             View email = header.findViewById(R.id.app_email);

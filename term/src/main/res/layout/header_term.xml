@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
- * Copyright (c) 2018-2022 Roumen Petrov.  All rights reserved.
+ * Copyright (c) 2018-2026 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,11 +45,11 @@
                 app:srcCompat="@mipmap/ic_launcher"/>
 
             <TextView
+                android:id="@+id/app_ver"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_marginLeft="@dimen/text2_margin"
-                android:text="@string/application_version"
                 android:textAppearance="?android:attr/textAppearanceSmall"/>
 
         </LinearLayout>

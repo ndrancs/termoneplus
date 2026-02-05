@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018-2025 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2018-2026 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,7 @@ import java.io.File;
 
 public class Application extends android.app.Application {
     public static final String ID = BuildConfig.APPLICATION_ID;
+    public static final String VER = BuildConfig.VERSION_NAME;
 
     /**
      * The tag we use when logging, so that our messages can be distinguished
