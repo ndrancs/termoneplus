@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.library'
+    id 'maven-publish'
 }
 java {
     toolchain {
@@ -16,10 +17,6 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-
-        //Major.Minor.Patch
-        versionCode 10800
-        versionName '1.8.0'
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -34,8 +31,40 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.txt'
         }
     }
+    publishing {
+        singleVariant('release') {}
+    }
 }
 
 dependencies {
     implementation libs.annotation
+}
+
+apply from: 'libVersion.gradle'
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = 'com.termoneplus'
+            artifactId = 'emulatorview'
+            version = project.ext.emulatorViewVersion
+            pom {
+                name = 'Emulator View'
+                description = 'A terminal emulator library for Android OS'
+                url = 'https://termoneplus.com'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                packaging = 'aar'
+                scm {
+                    url = 'https://gitlab.com/termapps/termoneplus/-/tree/master/emulatorview'
+                }
+            }
+            afterEvaluate {
+                from components.release
+            }
+        }
+    }
 }
