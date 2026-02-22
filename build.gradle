@@ -18,3 +18,9 @@ apply from: 'version.gradle'
 tasks.named('wrapper') {
     //distributionUrl = "https://services.gradle.org/distributions/gradle-${gradleVersion}-bin.zip"
 }
+
+tasks.named("updateDaemonJvm") {
+    // requires foojay plugin >= 1.0.0, see settings.gradle
+    languageVersion = JavaLanguageVersion.of(17)
+    vendor = JvmVendorSpec.JETBRAINS
+}
