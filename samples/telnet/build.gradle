@@ -21,6 +21,9 @@ android {
         versionCode 210
         versionName '2.1.0'
     }
+    lint {
+        targetSdk = rootProject.ext.targetSdkVersion
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

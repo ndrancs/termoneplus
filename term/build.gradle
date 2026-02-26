@@ -32,6 +32,9 @@ android {
             }
         }
     }
+    lint {
+        targetSdk = rootProject.ext.targetSdkVersion
+    }
     externalNativeBuild {
         cmake {
             path "src/main/jni/CMakeLists.txt"
