@@ -12,6 +12,8 @@ java {
 android {
     namespace = "jackpal.androidterm.emulatorview"
 
+    enableKotlin = false
+
     compileSdk = rootProject.ext.compileSdk
     buildToolsVersion = rootProject.ext.buildToolsVersion
     defaultConfig {

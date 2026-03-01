@@ -11,6 +11,8 @@ java {
 android {
     namespace = "com.termoneplus"
 
+    enableKotlin = false
+
     compileSdk = rootProject.ext.compileSdk
     buildToolsVersion = rootProject.ext.buildToolsVersion
     ndkVersion = rootProject.ext.ndkVersion

@@ -14,6 +14,8 @@ def termApplicationId = "com.termoneplus"
 android {
     namespace = "com.termoneplus.sample.intents"
 
+    enableKotlin = false
+
     compileSdk = rootProject.ext.compileSdk
     buildToolsVersion = rootProject.ext.buildToolsVersion
     defaultConfig {
