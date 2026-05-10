@@ -240,7 +240,7 @@ public class TermService extends SessionsService {
                 // - service
                 // - uses-permission
                 service.startForeground(RUNNING_NOTIFICATION, notification,
-                        ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC);
+                        ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE);
             }
         }
 

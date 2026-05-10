@@ -65,6 +65,21 @@
     <!-- Miscellaneous -->
     <string name="window_title">Window %1$d</string>
 
+    <string name="service_special_use" translatable="false">
+        My application, TermOne Plus, opens "terminal" windows with command-line interpreter(born shell).
+        In a window, the user can execute a command such as secure shell (ssh), which allows them to connect to their servers remotely.
+        Remark: Secure shell replaces insecure protocols like rlogin and is preferred by users for its robust encryption, strong authentication, and data integrity.
+        It enables remote command execution(SSH), file transfers (SFTP/SCP) in a secure network connection over reliable protocol(TCP).
+        When is opened a terminal users expects session to remain active even when application is minimised.
+        One of reasons is long-running tasks like command execution, data transfers, software compilation, many administrative tasks.
+        The user does not want an abrupt termination of the session because it may disrupt ongoing processes.
+        Termination may cause data loss, may leave orphaned jobs, or may require manual cleanup and so frustrate and disappoint users.
+        Commands like ssh keep-alive prevent idle timeouts, ensuring an active connection, and avoiding disconnection due to inactivity.
+        While the application is running, it provides a clear notification to users that a terminal session is running.
+        The use of "Foreground Service" is critical to maintain sessions.
+        It is essential to deliver reliable, and uninterrupted session that application users rely on, and that ensures a seamless user experience.
+        The application request only necessary permissions and this texts provides detailed information on data usage.
+    </string>
     <string name="service_notify_text">Terminal session is running</string>
     <string name="service_timeout_text">System terminates long-running terminal sessions</string>
 
