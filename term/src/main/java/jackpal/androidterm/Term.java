@@ -273,6 +273,7 @@ public class Term extends AppCompatActivity
         mHaveFullHwKeyboard = checkHaveFullHwKeyboard(getResources().getConfiguration());
 
         updatePrefs();
+        setupExtraKeys();
         requestStoragePermission();
         mAlreadyStarted = true;
     }
@@ -283,6 +284,64 @@ public class Term extends AppCompatActivity
 
         service_manager.setOnServiceConnectionListener(Term.this::onServiceConnection);
         service_manager.onStart(this);
+    }
+
+    private void setupExtraKeys() {
+        View extraKeys = findViewById(R.id.extra_keys_scroll);
+        if (extraKeys == null) return;
+
+        View keyEsc = findViewById(R.id.key_esc);
+        if (keyEsc != null) keyEsc.setOnClickListener(v -> sendKey(KeyEvent.KEYCODE_ESCAPE));
+        View keyCtrl = findViewById(R.id.key_ctrl);
+        if (keyCtrl != null) keyCtrl.setOnClickListener(v -> {
+            EmulatorView view = getCurrentEmulatorView();
+            if (view != null) view.sendControlKey();
+        });
+        View keyAlt = findViewById(R.id.key_alt);
+        if (keyAlt != null) keyAlt.setOnClickListener(v -> {
+            EmulatorView view = getCurrentEmulatorView();
+            if (view != null) view.sendAltKey();
+        });
+        View keyTab = findViewById(R.id.key_tab);
+        if (keyTab != null) keyTab.setOnClickListener(v -> sendKey(KeyEvent.KEYCODE_TAB));
+        View keyMinus = findViewById(R.id.key_minus);
+        if (keyMinus != null) keyMinus.setOnClickListener(v -> sendString("-"));
+        View keySlash = findViewById(R.id.key_slash);
+        if (keySlash != null) keySlash.setOnClickListener(v -> sendString("/"));
+        View keyLeft = findViewById(R.id.key_left);
+        if (keyLeft != null) keyLeft.setOnClickListener(v -> sendKey(KeyEvent.KEYCODE_DPAD_LEFT));
+        View keyDown = findViewById(R.id.key_down);
+        if (keyDown != null) keyDown.setOnClickListener(v -> sendKey(KeyEvent.KEYCODE_DPAD_DOWN));
+        View keyUp = findViewById(R.id.key_up);
+        if (keyUp != null) keyUp.setOnClickListener(v -> sendKey(KeyEvent.KEYCODE_DPAD_UP));
+        View keyRight = findViewById(R.id.key_right);
+        if (keyRight != null) keyRight.setOnClickListener(v -> sendKey(KeyEvent.KEYCODE_DPAD_RIGHT));
+
+        View rootView = findViewById(android.R.id.content);
+        rootView.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+            if (SoftInputCompat.isSoftInputVisible(rootView)) {
+                extraKeys.setVisibility(View.VISIBLE);
+            } else {
+                extraKeys.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    private void sendKey(int keyCode) {
+        EmulatorView view = getCurrentEmulatorView();
+        if (view != null) {
+            KeyEvent downEvent = new KeyEvent(KeyEvent.ACTION_DOWN, keyCode);
+            view.onKeyDown(keyCode, downEvent);
+            KeyEvent upEvent = new KeyEvent(KeyEvent.ACTION_UP, keyCode);
+            view.onKeyUp(keyCode, upEvent);
+        }
+    }
+
+    private void sendString(String s) {
+        TermSession session = getCurrentTermSession();
+        if (session != null) {
+            session.write(s);
+        }
     }
 
     private synchronized void populateSessions() {

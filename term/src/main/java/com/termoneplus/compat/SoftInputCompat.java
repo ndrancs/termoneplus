@@ -41,7 +41,7 @@ public class SoftInputCompat {
             Compat3.toggle(imm);
     }
 
-    private static boolean isSoftInputVisible(View view) {
+    public static boolean isSoftInputVisible(View view) {
         View root = view.getRootView();
 
         Rect r = new Rect();

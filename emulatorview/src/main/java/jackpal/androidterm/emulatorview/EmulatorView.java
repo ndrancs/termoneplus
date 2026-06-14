@@ -202,6 +202,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
     private int mControlKeyCode;
     private int mFnKeyCode;
     private boolean mIsControlKeySent = false;
+    private boolean mIsAltKeySent = false;
     private boolean mIsFnKeySent = false;
 
     private boolean mMouseTracking;
@@ -1483,6 +1484,11 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
             mKeyListener.handleControlKey(false);
             invalidate();
         }
+        if (mIsAltKeySent) {
+            mIsAltKeySent = false;
+            mKeyListener.handleAltKey(false);
+            invalidate();
+        }
         if (mIsFnKeySent) {
             mIsFnKeySent = false;
             mKeyListener.handleFnKey(false);
@@ -1688,6 +1694,15 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
     public void sendControlKey() {
         mIsControlKeySent = true;
         mKeyListener.handleControlKey(true);
+        invalidate();
+    }
+
+    /**
+     * Send an Alt key event to the terminal.
+     */
+    public void sendAltKey() {
+        mIsAltKeySent = true;
+        mKeyListener.handleAltKey(true);
         invalidate();
     }
 

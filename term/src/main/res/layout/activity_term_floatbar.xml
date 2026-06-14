@@ -15,26 +15,38 @@
  * limitations under the License.
 -->
 
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <jackpal.androidterm.TermViewFlipper
-        android:id="@+id/view_flipper"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginRight="1dp"
-        android:layout_marginBottom="1dp"
-        android:background="@android:color/black"/>
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <jackpal.androidterm.TermViewFlipper
+            android:id="@+id/view_flipper"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="@android:color/black"/>
+
+        <include
+            layout="@layout/appbar_term"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"/>
+    </FrameLayout>
 
     <include
-        layout="@layout/appbar_term"
+        layout="@layout/extra_keys"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"/>
+        android:layout_height="wrap_content"/>
 
-</FrameLayout>
+</LinearLayout>

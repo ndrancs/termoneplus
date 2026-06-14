@@ -114,13 +114,13 @@ dependencies {
     implementation libs.annotation
 }
 
-tasks.register('elfcleaner', Exec) {
+// tasks.register('elfcleaner', Exec) {
     // only unix
-    commandLine 'sh', '-c', 'find build/*/stripped* -name lib*.so -print0 | xargs -0 -P 0 elf-cleaner'
-}
+    // commandLine 'sh', '-c', 'find build/*/stripped* -name lib*.so -print0 | xargs -0 -P 0 elf-cleaner'
+// }
 
 tasks.configureEach { task ->
     if (task.name.matches('strip.*DebugSymbols')) {
-        task.finalizedBy elfcleaner
+        // task.finalizedBy elfcleaner
     }
 }
