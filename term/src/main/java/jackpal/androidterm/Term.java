@@ -292,6 +292,8 @@ public class Term extends AppCompatActivity
 
         View keyEsc = findViewById(R.id.key_esc);
         if (keyEsc != null) keyEsc.setOnClickListener(v -> sendKey(KeyEvent.KEYCODE_ESCAPE));
+        View keyTab = findViewById(R.id.key_tab);
+        if (keyTab != null) keyTab.setOnClickListener(v -> sendKey(KeyEvent.KEYCODE_TAB));
         View keyCtrl = findViewById(R.id.key_ctrl);
         if (keyCtrl != null) keyCtrl.setOnClickListener(v -> {
             EmulatorView view = getCurrentEmulatorView();
@@ -302,18 +304,33 @@ public class Term extends AppCompatActivity
             EmulatorView view = getCurrentEmulatorView();
             if (view != null) view.sendAltKey();
         });
-        View keyTab = findViewById(R.id.key_tab);
-        if (keyTab != null) keyTab.setOnClickListener(v -> sendKey(KeyEvent.KEYCODE_TAB));
         View keyMinus = findViewById(R.id.key_minus);
         if (keyMinus != null) keyMinus.setOnClickListener(v -> sendString("-"));
+        View keyUnderscore = findViewById(R.id.key_underscore);
+        if (keyUnderscore != null) keyUnderscore.setOnClickListener(v -> sendString("_"));
+        View keyHome = findViewById(R.id.key_home);
+        if (keyHome != null) keyHome.setOnClickListener(v -> sendKey(KeyEvent.KEYCODE_MOVE_HOME));
+        View keyUp = findViewById(R.id.key_up);
+        if (keyUp != null) keyUp.setOnClickListener(v -> sendKey(KeyEvent.KEYCODE_DPAD_UP));
+        View keyEnd = findViewById(R.id.key_end);
+        if (keyEnd != null) keyEnd.setOnClickListener(v -> sendKey(KeyEvent.KEYCODE_MOVE_END));
+
+        View keyKeyboard = findViewById(R.id.key_keyboard);
+        if (keyKeyboard != null) keyKeyboard.setOnClickListener(v -> doToggleSoftKeyboard());
+        View keyTilde = findViewById(R.id.key_tilde);
+        if (keyTilde != null) keyTilde.setOnClickListener(v -> sendString("~"));
         View keySlash = findViewById(R.id.key_slash);
         if (keySlash != null) keySlash.setOnClickListener(v -> sendString("/"));
+        View keyPipe = findViewById(R.id.key_pipe);
+        if (keyPipe != null) keyPipe.setOnClickListener(v -> sendString("|"));
+        View keyPgUp = findViewById(R.id.key_pgup);
+        if (keyPgUp != null) keyPgUp.setOnClickListener(v -> sendKey(KeyEvent.KEYCODE_PAGE_UP));
+        View keyPgDn = findViewById(R.id.key_pgdn);
+        if (keyPgDn != null) keyPgDn.setOnClickListener(v -> sendKey(KeyEvent.KEYCODE_PAGE_DOWN));
         View keyLeft = findViewById(R.id.key_left);
         if (keyLeft != null) keyLeft.setOnClickListener(v -> sendKey(KeyEvent.KEYCODE_DPAD_LEFT));
         View keyDown = findViewById(R.id.key_down);
         if (keyDown != null) keyDown.setOnClickListener(v -> sendKey(KeyEvent.KEYCODE_DPAD_DOWN));
-        View keyUp = findViewById(R.id.key_up);
-        if (keyUp != null) keyUp.setOnClickListener(v -> sendKey(KeyEvent.KEYCODE_DPAD_UP));
         View keyRight = findViewById(R.id.key_right);
         if (keyRight != null) keyRight.setOnClickListener(v -> sendKey(KeyEvent.KEYCODE_DPAD_RIGHT));
 
