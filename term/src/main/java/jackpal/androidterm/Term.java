@@ -298,11 +298,13 @@ public class Term extends AppCompatActivity
         if (keyCtrl != null) keyCtrl.setOnClickListener(v -> {
             EmulatorView view = getCurrentEmulatorView();
             if (view != null) view.sendControlKey();
+            updateModifierKeysState();
         });
         View keyAlt = findViewById(R.id.key_alt);
         if (keyAlt != null) keyAlt.setOnClickListener(v -> {
             EmulatorView view = getCurrentEmulatorView();
             if (view != null) view.sendAltKey();
+            updateModifierKeysState();
         });
         View keyMinus = findViewById(R.id.key_minus);
         if (keyMinus != null) keyMinus.setOnClickListener(v -> sendString("-"));
@@ -342,6 +344,22 @@ public class Term extends AppCompatActivity
                 extraKeys.setVisibility(View.GONE);
             }
         });
+        updateModifierKeysState();
+    }
+
+    private void updateModifierKeysState() {
+        EmulatorView view = getCurrentEmulatorView();
+        boolean ctrlActive = view != null && view.isCtrlActive();
+        boolean altActive = view != null && view.isAltActive();
+
+        View keyCtrl = findViewById(R.id.key_ctrl);
+        if (keyCtrl != null) {
+            keyCtrl.setSelected(ctrlActive);
+        }
+        View keyAlt = findViewById(R.id.key_alt);
+        if (keyAlt != null) {
+            keyAlt.setSelected(altActive);
+        }
     }
 
     private void sendKey(int keyCode) {
@@ -408,6 +426,7 @@ public class Term extends AppCompatActivity
             mWinListAdapter.setSessions(mTermSessions);
         }
         mViewFlipper.addCallback(mWinListAdapter);
+        mViewFlipper.addCallback(this::updateModifierKeysState);
 
         synchronizeActionBar();
     }
@@ -438,6 +457,7 @@ public class Term extends AppCompatActivity
         emulatorView.setOnKeyListener(mKeyListener);
         emulatorView.setOnToggleSelectingTextListener(
                 () -> mActionBar.lockDrawer(emulatorView.getSelectingText()));
+        emulatorView.setOnModifierStateChangeListener(this::updateModifierKeysState);
         registerForContextMenu(emulatorView);
 
         return emulatorView;
@@ -542,6 +562,8 @@ public class Term extends AppCompatActivity
 
         mHaveFullHwKeyboard = checkHaveFullHwKeyboard(newConfig);
 
+        reinflateExtraKeys();
+
         EmulatorView v = (EmulatorView) mViewFlipper.getCurrentView();
         if (v != null) {
             v.updateSize(false);
@@ -551,6 +573,26 @@ public class Term extends AppCompatActivity
             // Force Android to redraw the label in the navigation dropdown
             mWinListAdapter.notifyDataSetChanged();
         }
+    }
+
+    private void reinflateExtraKeys() {
+        View oldExtraKeys = findViewById(R.id.extra_keys_scroll);
+        if (oldExtraKeys == null) return;
+
+        ViewGroup parent = (ViewGroup) oldExtraKeys.getParent();
+        if (parent == null) return;
+
+        int index = parent.indexOfChild(oldExtraKeys);
+        int visibility = oldExtraKeys.getVisibility();
+
+        parent.removeViewAt(index);
+
+        View newExtraKeys = getLayoutInflater().inflate(R.layout.extra_keys, parent, false);
+        newExtraKeys.setVisibility(visibility);
+
+        parent.addView(newExtraKeys, index);
+
+        setupExtraKeys();
     }
 
     @Override

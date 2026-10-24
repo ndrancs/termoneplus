@@ -198,6 +198,29 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
     private boolean mIsSelectingText = false;
     private OnToggleSelectingTextListener onToggleSelectingTextListener;
 
+    public interface OnModifierStateChangeListener {
+        void onModifierStateChanged();
+    }
+    private OnModifierStateChangeListener mOnModifierStateChangeListener;
+
+    public void setOnModifierStateChangeListener(OnModifierStateChangeListener listener) {
+        mOnModifierStateChangeListener = listener;
+    }
+
+    public void notifyModifierStateChanged() {
+        if (mOnModifierStateChangeListener != null) {
+            mOnModifierStateChangeListener.onModifierStateChanged();
+        }
+    }
+
+    public boolean isCtrlActive() {
+        return mKeyListener != null && mKeyListener.isCtrlActive();
+    }
+
+    public boolean isAltActive() {
+        return mKeyListener != null && mKeyListener.isAltActive();
+    }
+
     private boolean mBackKeySendsCharacter = false;
     private int mControlKeyCode;
     private int mFnKeyCode;
@@ -1342,10 +1365,11 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
         if (LOG_KEY_EVENTS) {
             Log.w(TAG, "onKeyDown " + keyCode);
         }
+        boolean handled = false;
         if (handleControlKey(keyCode, true)) {
-            return true;
+            handled = true;
         } else if (handleFnKey(keyCode, true)) {
-            return true;
+            handled = true;
         } else if (isSystemKey(keyCode, event)) {
             if (!isInterceptedSystemKey(keyCode)) {
                 // Don't intercept the system keys
@@ -1353,19 +1377,22 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
             }
         }
 
-        // Translate the keyCode into an ASCII character.
+        if (!handled) {
+            // Translate the keyCode into an ASCII character.
 
-        try {
-            int oldCombiningAccent = mKeyListener.getCombiningAccent();
-            int oldCursorMode = mKeyListener.getCursorMode();
-            mKeyListener.keyDown(keyCode, event, getKeypadApplicationMode());
-            if (mKeyListener.getCombiningAccent() != oldCombiningAccent
-                    || mKeyListener.getCursorMode() != oldCursorMode) {
-                invalidate();
+            try {
+                int oldCombiningAccent = mKeyListener.getCombiningAccent();
+                int oldCursorMode = mKeyListener.getCursorMode();
+                mKeyListener.keyDown(keyCode, event, getKeypadApplicationMode());
+                if (mKeyListener.getCombiningAccent() != oldCombiningAccent
+                        || mKeyListener.getCursorMode() != oldCursorMode) {
+                    invalidate();
+                }
+            } catch (IOException e) {
+                // Ignore I/O exceptions
             }
-        } catch (IOException e) {
-            // Ignore I/O exceptions
         }
+        notifyModifierStateChanged();
         return true;
     }
 
@@ -1387,8 +1414,10 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
             Log.w(TAG, "onKeyUp " + keyCode);
         }
         if (handleControlKey(keyCode, false)) {
+            notifyModifierStateChanged();
             return true;
         } else if (handleFnKey(keyCode, false)) {
+            notifyModifierStateChanged();
             return true;
         } else if (isSystemKey(keyCode, event)) {
             // Don't intercept the system keys
@@ -1399,6 +1428,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
 
         mKeyListener.keyUp(keyCode, event);
         clearSpecialKeyStatus();
+        notifyModifierStateChanged();
         return true;
     }
 
@@ -1442,6 +1472,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
             }
             mKeyListener.handleControlKey(down);
             invalidate();
+            notifyModifierStateChanged();
             return true;
         }
         return false;
@@ -1456,6 +1487,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
             boolean down = event.getAction() == KeyEvent.ACTION_DOWN;
             mKeyListener.handleHardwareControlKey(down);
             invalidate();
+            notifyModifierStateChanged();
             return true;
         }
         return false;
@@ -1468,6 +1500,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
             }
             mKeyListener.handleFnKey(down);
             invalidate();
+            notifyModifierStateChanged();
             return true;
         }
         return false;
@@ -1494,6 +1527,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
             mKeyListener.handleFnKey(false);
             invalidate();
         }
+        notifyModifierStateChanged();
     }
 
     private void updateText() {
@@ -1695,6 +1729,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
         mIsControlKeySent = true;
         mKeyListener.handleControlKey(true);
         invalidate();
+        notifyModifierStateChanged();
     }
 
     /**
@@ -1704,6 +1739,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
         mIsAltKeySent = true;
         mKeyListener.handleAltKey(true);
         invalidate();
+        notifyModifierStateChanged();
     }
 
     /**
