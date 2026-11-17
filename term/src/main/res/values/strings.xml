@@ -261,4 +261,35 @@
     <string name="colorvalue_label_lock_button_column">LOCK</string>
     <string name="colorvalue_icon_text_entry_hint">Enter icon text</string>
     <!-- END SHORTCUT RELATED STRINGS -->
+
+    <!-- Extra keys preferences & editor -->
+    <string name="key_extra_keys_preference" translatable="false">extra_keys_pref</string>
+    <string name="title_extra_keys_preference">Customize Extra Keys</string>
+    <string name="summary_extra_keys_preference">Customize soft key bar layout (.termux/termux.properties).</string>
+    <string name="extra_keys_title">Customize Extra Keys</string>
+    <string name="extra_keys_visual_editor">Visual Editor</string>
+    <string name="extra_keys_code_editor">Code Editor</string>
+    <string name="extra_keys_preview">Live Preview</string>
+    <string name="extra_keys_add_row">Add Row</string>
+    <string name="extra_keys_add_key">+ Add Key</string>
+    <string name="extra_keys_row_title">Row %1$d</string>
+    <string name="extra_keys_edit_key">Edit Key</string>
+    <string name="extra_keys_new_key">New Key</string>
+    <string name="extra_keys_preset_keys">Quick Presets:</string>
+    <string name="extra_keys_key_action">Key Action / Name</string>
+    <string name="extra_keys_display_label">Display Label (optional)</string>
+    <string name="extra_keys_macro">Macro Text (optional)</string>
+    <string name="extra_keys_popup">Popup Key (optional)</string>
+    <string name="extra_keys_delete_key">Delete Key</string>
+    <string name="extra_keys_delete_row">Delete Row</string>
+    <string name="extra_keys_move_up">Move Up</string>
+    <string name="extra_keys_move_down">Move Down</string>
+    <string name="extra_keys_move_left">Move Left</string>
+    <string name="extra_keys_move_right">Move Right</string>
+    <string name="extra_keys_reset_default">Reset Default</string>
+    <string name="extra_keys_save">Save &amp; Apply</string>
+    <string name="extra_keys_cancel">Cancel</string>
+    <string name="extra_keys_saved_toast">Extra keys saved</string>
+    <string name="extra_keys_format_json">Format JSON</string>
+    <string name="extra_keys_invalid_json">Invalid JSON or property format</string>
 </resources>

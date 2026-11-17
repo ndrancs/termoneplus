@@ -165,6 +165,15 @@
                 android:value="com.termoneplus.TermActivity"/>
         </activity>
         <activity
+            android:name=".extrakeys.ExtraKeysActivity"
+            android:label="@string/extra_keys_title"
+            android:parentActivityName="com.termoneplus.TermPreferencesActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.termoneplus.TermPreferencesActivity"/>
+        </activity>
+        <activity
             android:name=".shortcuts.AddShortcut"
             android:configChanges="orientation|keyboard|keyboardHidden"
             android:exported="true"

@@ -102,6 +102,19 @@ public class TermPreferencesActivity extends AppCompatActivity
                             preference -> TypefaceSetting.chose(getActivity()));
             }
 
+            {
+                Preference pref = findPreference(getString(R.string.key_extra_keys_preference));
+                if (pref != null) {
+                    pref.setOnPreferenceClickListener(preference -> {
+                        Context ctx = getContext();
+                        if (ctx != null) {
+                            ctx.startActivity(new android.content.Intent(ctx, com.termoneplus.extrakeys.ExtraKeysActivity.class));
+                        }
+                        return true;
+                    });
+                }
+            }
+
             Context context = getContext();
             if (context != null) {
                 TermSettings settings = new TermSettings(context);

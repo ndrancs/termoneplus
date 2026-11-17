@@ -235,6 +235,11 @@
             android:summaryOn="@string/use_keyboard_shortcuts_summary_on"
             android:title="@string/title_use_keyboard_shortcuts"/>
 
+        <Preference
+            android:key="@string/key_extra_keys_preference"
+            android:summary="@string/summary_extra_keys_preference"
+            android:title="@string/title_extra_keys_preference"/>
+
     </PreferenceCategory>
 
 </PreferenceScreen>

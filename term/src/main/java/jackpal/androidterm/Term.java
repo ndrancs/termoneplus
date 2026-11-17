@@ -47,6 +47,10 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultLauncher;
+import android.widget.Button;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -64,6 +68,9 @@ import com.termoneplus.TermPreferencesActivity;
 import com.termoneplus.WindowListActivity;
 import com.termoneplus.WindowListAdapter;
 import com.termoneplus.compat.SoftInputCompat;
+import com.termoneplus.extrakeys.ExtraKeyInfo;
+import com.termoneplus.extrakeys.ExtraKeysConfig;
+import com.termoneplus.extrakeys.ExtraKeysHelper;
 import com.termoneplus.remote.CommandCollector;
 import com.termoneplus.services.ServiceManager;
 import com.termoneplus.utils.ConsoleStartupScript;
@@ -72,6 +79,9 @@ import com.termoneplus.utils.WakeLock;
 import com.termoneplus.utils.WifiLock;
 import com.termoneplus.utils.WrapOpenURL;
 import com.termoneplus.widget.ScreenMessage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import java.io.IOException;
 
@@ -287,64 +297,189 @@ public class Term extends AppCompatActivity
     }
 
     private void setupExtraKeys() {
-        View extraKeys = findViewById(R.id.extra_keys_scroll);
-        if (extraKeys == null) return;
+        View extraKeysScroll = findViewById(R.id.extra_keys_scroll);
+        if (extraKeysScroll == null) return;
 
-        View keyEsc = findViewById(R.id.key_esc);
-        if (keyEsc != null) keyEsc.setOnClickListener(v -> sendKey(KeyEvent.KEYCODE_ESCAPE));
-        View keyTab = findViewById(R.id.key_tab);
-        if (keyTab != null) keyTab.setOnClickListener(v -> sendKey(KeyEvent.KEYCODE_TAB));
-        View keyCtrl = findViewById(R.id.key_ctrl);
-        if (keyCtrl != null) keyCtrl.setOnClickListener(v -> {
-            EmulatorView view = getCurrentEmulatorView();
-            if (view != null) view.sendControlKey();
-            updateModifierKeysState();
-        });
-        View keyAlt = findViewById(R.id.key_alt);
-        if (keyAlt != null) keyAlt.setOnClickListener(v -> {
-            EmulatorView view = getCurrentEmulatorView();
-            if (view != null) view.sendAltKey();
-            updateModifierKeysState();
-        });
-        View keyMinus = findViewById(R.id.key_minus);
-        if (keyMinus != null) keyMinus.setOnClickListener(v -> sendString("-"));
-        View keyUnderscore = findViewById(R.id.key_underscore);
-        if (keyUnderscore != null) keyUnderscore.setOnClickListener(v -> sendString("_"));
-        View keyHome = findViewById(R.id.key_home);
-        if (keyHome != null) keyHome.setOnClickListener(v -> sendKey(KeyEvent.KEYCODE_MOVE_HOME));
-        View keyUp = findViewById(R.id.key_up);
-        if (keyUp != null) keyUp.setOnClickListener(v -> sendKey(KeyEvent.KEYCODE_DPAD_UP));
-        View keyEnd = findViewById(R.id.key_end);
-        if (keyEnd != null) keyEnd.setOnClickListener(v -> sendKey(KeyEvent.KEYCODE_MOVE_END));
+        TableLayout container = findViewById(R.id.extra_keys_container);
+        if (container == null) return;
 
-        View keyKeyboard = findViewById(R.id.key_keyboard);
-        if (keyKeyboard != null) keyKeyboard.setOnClickListener(v -> doToggleSoftKeyboard());
-        View keyTilde = findViewById(R.id.key_tilde);
-        if (keyTilde != null) keyTilde.setOnClickListener(v -> sendString("~"));
-        View keySlash = findViewById(R.id.key_slash);
-        if (keySlash != null) keySlash.setOnClickListener(v -> sendString("/"));
-        View keyPipe = findViewById(R.id.key_pipe);
-        if (keyPipe != null) keyPipe.setOnClickListener(v -> sendString("|"));
-        View keyPgUp = findViewById(R.id.key_pgup);
-        if (keyPgUp != null) keyPgUp.setOnClickListener(v -> sendKey(KeyEvent.KEYCODE_PAGE_UP));
-        View keyPgDn = findViewById(R.id.key_pgdn);
-        if (keyPgDn != null) keyPgDn.setOnClickListener(v -> sendKey(KeyEvent.KEYCODE_PAGE_DOWN));
-        View keyLeft = findViewById(R.id.key_left);
-        if (keyLeft != null) keyLeft.setOnClickListener(v -> sendKey(KeyEvent.KEYCODE_DPAD_LEFT));
-        View keyDown = findViewById(R.id.key_down);
-        if (keyDown != null) keyDown.setOnClickListener(v -> sendKey(KeyEvent.KEYCODE_DPAD_DOWN));
-        View keyRight = findViewById(R.id.key_right);
-        if (keyRight != null) keyRight.setOnClickListener(v -> sendKey(KeyEvent.KEYCODE_DPAD_RIGHT));
+        container.removeAllViews();
+        mCtrlKeyViews.clear();
+        mAltKeyViews.clear();
+
+        String homePath = mSettings != null ? mSettings.getHomePath() : null;
+        ExtraKeysConfig config = ExtraKeysHelper.loadConfig(this, homePath);
+
+        for (int r = 0; r < config.getRows().size(); r++) {
+            List<ExtraKeyInfo> rowKeys = config.getRows().get(r);
+            TableRow tableRow = new TableRow(this);
+            TableLayout.LayoutParams rowParams = new TableLayout.LayoutParams(
+                    TableLayout.LayoutParams.WRAP_CONTENT,
+                    TableLayout.LayoutParams.WRAP_CONTENT);
+            if (r > 0) {
+                rowParams.topMargin = (int) (2 * getResources().getDisplayMetrics().density);
+            }
+            tableRow.setLayoutParams(rowParams);
+
+            for (ExtraKeyInfo keyInfo : rowKeys) {
+                Button button = (Button) getLayoutInflater().inflate(R.layout.extra_key_button, tableRow, false);
+                button.setText(keyInfo.getDisplayLabel());
+
+                String key = keyInfo.getKey();
+                if (key != null) {
+                    if ("CTRL".equalsIgnoreCase(key) || "CONTROL".equalsIgnoreCase(key)) {
+                        mCtrlKeyViews.add(button);
+                    } else if ("ALT".equalsIgnoreCase(key)) {
+                        mAltKeyViews.add(button);
+                    }
+                }
+
+                button.setOnClickListener(v -> executeExtraKeyAction(keyInfo));
+                if (!TextUtils.isEmpty(keyInfo.getPopup())) {
+                    button.setOnLongClickListener(v -> {
+                        executeExtraKeyAction(new ExtraKeyInfo(keyInfo.getPopup()));
+                        return true;
+                    });
+                }
+
+                tableRow.addView(button);
+            }
+            container.addView(tableRow);
+        }
 
         View rootView = findViewById(android.R.id.content);
         rootView.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
             if (SoftInputCompat.isSoftInputVisible(rootView)) {
-                extraKeys.setVisibility(View.VISIBLE);
+                extraKeysScroll.setVisibility(View.VISIBLE);
             } else {
-                extraKeys.setVisibility(View.GONE);
+                extraKeysScroll.setVisibility(View.GONE);
             }
         });
         updateModifierKeysState();
+    }
+
+    private final List<View> mCtrlKeyViews = new ArrayList<>();
+    private final List<View> mAltKeyViews = new ArrayList<>();
+
+    private void executeExtraKeyAction(ExtraKeyInfo keyInfo) {
+        if (keyInfo == null) return;
+        if (!TextUtils.isEmpty(keyInfo.getMacro())) {
+            sendString(keyInfo.getMacro());
+            return;
+        }
+
+        String key = keyInfo.getKey();
+        if (TextUtils.isEmpty(key)) return;
+
+        String upper = key.toUpperCase();
+        switch (upper) {
+            case "ESC":
+            case "ESCAPE":
+                sendKey(KeyEvent.KEYCODE_ESCAPE);
+                break;
+            case "TAB":
+                sendKey(KeyEvent.KEYCODE_TAB);
+                break;
+            case "CTRL":
+            case "CONTROL": {
+                EmulatorView view = getCurrentEmulatorView();
+                if (view != null) view.sendControlKey();
+                updateModifierKeysState();
+                break;
+            }
+            case "ALT": {
+                EmulatorView view = getCurrentEmulatorView();
+                if (view != null) view.sendAltKey();
+                updateModifierKeysState();
+                break;
+            }
+            case "FN": {
+                EmulatorView view = getCurrentEmulatorView();
+                if (view != null) view.sendFnKey();
+                updateModifierKeysState();
+                break;
+            }
+            case "HOME":
+            case "MOVE_HOME":
+                sendKey(KeyEvent.KEYCODE_MOVE_HOME);
+                break;
+            case "END":
+            case "MOVE_END":
+                sendKey(KeyEvent.KEYCODE_MOVE_END);
+                break;
+            case "PGUP":
+            case "PAGEUP":
+            case "PAGE_UP":
+                sendKey(KeyEvent.KEYCODE_PAGE_UP);
+                break;
+            case "PGDN":
+            case "PAGEDOWN":
+            case "PAGE_DOWN":
+                sendKey(KeyEvent.KEYCODE_PAGE_DOWN);
+                break;
+            case "UP":
+            case "DPAD_UP":
+                sendKey(KeyEvent.KEYCODE_DPAD_UP);
+                break;
+            case "DOWN":
+            case "DPAD_DOWN":
+                sendKey(KeyEvent.KEYCODE_DPAD_DOWN);
+                break;
+            case "LEFT":
+            case "DPAD_LEFT":
+                sendKey(KeyEvent.KEYCODE_DPAD_LEFT);
+                break;
+            case "RIGHT":
+            case "DPAD_RIGHT":
+                sendKey(KeyEvent.KEYCODE_DPAD_RIGHT);
+                break;
+            case "KEYBOARD":
+            case "KEY":
+                doToggleSoftKeyboard();
+                break;
+            case "DRAWER":
+                if (mActionBar != null) {
+                    mActionBar.doToggleActionBar();
+                }
+                break;
+            case "ENTER":
+            case "RET":
+                sendKey(KeyEvent.KEYCODE_ENTER);
+                break;
+            case "BACKSPACE":
+            case "BKSP":
+                sendKey(KeyEvent.KEYCODE_DEL);
+                break;
+            case "DEL":
+            case "DELETE":
+                sendKey(KeyEvent.KEYCODE_FORWARD_DEL);
+                break;
+            case "INS":
+            case "INSERT":
+                sendKey(KeyEvent.KEYCODE_INSERT);
+                break;
+            case "PASTE":
+                doPaste();
+                break;
+            case "COPY":
+                doCopyAll();
+                break;
+            case "F1": sendKey(KeyEvent.KEYCODE_F1); break;
+            case "F2": sendKey(KeyEvent.KEYCODE_F2); break;
+            case "F3": sendKey(KeyEvent.KEYCODE_F3); break;
+            case "F4": sendKey(KeyEvent.KEYCODE_F4); break;
+            case "F5": sendKey(KeyEvent.KEYCODE_F5); break;
+            case "F6": sendKey(KeyEvent.KEYCODE_F6); break;
+            case "F7": sendKey(KeyEvent.KEYCODE_F7); break;
+            case "F8": sendKey(KeyEvent.KEYCODE_F8); break;
+            case "F9": sendKey(KeyEvent.KEYCODE_F9); break;
+            case "F10": sendKey(KeyEvent.KEYCODE_F10); break;
+            case "F11": sendKey(KeyEvent.KEYCODE_F11); break;
+            case "F12": sendKey(KeyEvent.KEYCODE_F12); break;
+            default:
+                sendString(key);
+                break;
+        }
     }
 
     private void updateModifierKeysState() {
@@ -352,13 +487,11 @@ public class Term extends AppCompatActivity
         boolean ctrlActive = view != null && view.isCtrlActive();
         boolean altActive = view != null && view.isAltActive();
 
-        View keyCtrl = findViewById(R.id.key_ctrl);
-        if (keyCtrl != null) {
-            keyCtrl.setSelected(ctrlActive);
+        for (View v : mCtrlKeyViews) {
+            v.setSelected(ctrlActive);
         }
-        View keyAlt = findViewById(R.id.key_alt);
-        if (keyAlt != null) {
-            keyAlt.setSelected(altActive);
+        for (View v : mAltKeyViews) {
+            v.setSelected(altActive);
         }
     }
 
